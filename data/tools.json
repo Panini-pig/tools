@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "tools": [
+    {
+      "id": "image-compressor",
+      "name": "本地图片压缩",
+      "type": "online",
+      "status": "active",
+      "path": "/image-compressor/",
+      "sourceDirectory": "../../image-compressor",
+      "summary": "在浏览器本地压缩 JPG、PNG 和 WebP 图片，图片不会上传到服务器。",
+      "versions": []
+    },
+    {
+      "id": "qq-space-backup",
+      "name": "QQ空间备份助手",
+      "type": "desktop",
+      "status": "active",
+      "path": "/qq-space-backup/",
+      "sourceDirectory": "../../qq-space-backup",
+      "summary": "下载到 Windows 电脑使用，为你有权访问的 QQ 空间内容建立本地备份。",
+      "platforms": ["Windows"],
+      "downloads": [
+        {
+          "provider": "direct",
+          "label": "站内直接下载",
+          "url": "/qq-space-backup/#download",
+          "delivery": "browser-assembled-chunks",
+          "sizeBytes": 34470705,
+          "sha256": "642295BCDF36846542104D3746883AF9722427942B3C23F69A6A80384CB9B6F7",
+          "contents": {
+            "file": "QQ空间备份助手.exe",
+            "sizeBytes": 87349760,
+            "sha256": "F684158B4EBF0664ECD3482E9B9C2F2509BB01EB9F76CFA281B15801E7287214"
+          }
+        },
+        {"provider": "lanzou", "label": "蓝奏云", "url": null},
+        {"provider": "123pan", "label": "123 云盘", "url": null}
+      ],
+      "versions": [
+        {
+          "label": "首个收录版本",
+          "releaseDate": "2026-10-24",
+          "file": "QQ空间备份助手.zip"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="帕尼尼工具箱：打开就能用的在线工具与桌面软件。">
+  <title>帕尼尼工具箱 · 打开就能用</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body id="top">
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="帕尼尼工具箱首页"><span class="brand-mark" aria-hidden="true"><i></i><i></i></span><span>帕尼尼工具箱</span></a>
+    <nav aria-label="主导航"><a href="#tool-index">工具目录</a><a href="#about">为什么做</a><a href="https://panini-pigs.cn/">返回主站 ↗</a></nav>
+    <a class="header-cta" href="#tool-index">开始使用 <span>→</span></a>
+  </header>
+
+  <main>
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="kicker"><span>VIBE CODING</span> 做出来，也真正用起来。</p>
+        <h1 id="hero-title"><span>工具不必复杂，</span><strong>解决问题<br>就够了。</strong></h1>
+        <p class="hero-intro">在线工具即开即用，桌面软件下载到本地。没有注册墙，没有绕路，找到工具就开始。</p>
+        <div class="hero-actions"><a class="button-primary" href="#tool-index">浏览全部工具 <span>↘</span></a><a class="text-link" href="/image-compressor/">直接压缩图片 <span>↗</span></a></div>
+        <div class="hero-proof" aria-label="工具箱特点"><span><b>01</b> 在线 + 本地</span><span><b>02</b> 说明透明</span><span><b>03</b> 持续更新</span></div>
+      </div>
+
+      <div class="tool-console" aria-label="热门工具快捷入口">
+        <div class="console-head"><div><span class="status-dot"></span><b>当前可用</b></div><span>2 TOOLS / 2026</span></div>
+        <div class="console-title"><p>不用翻菜单，<br>从这里直接开始。</p><span aria-hidden="true">↘</span></div>
+        <div class="quick-tools">
+          <a class="quick-tool quick-image" href="/image-compressor/">
+            <div class="tool-number">01</div><div class="tool-icon" aria-hidden="true"><span></span><i></i></div>
+            <div class="tool-copy"><span>在线工具 · 浏览器本地处理</span><h2>本地图片压缩</h2><p>批量压缩 JPG、PNG、WebP，图片不离开设备。</p></div>
+            <div class="tool-go"><span>立即使用</span><b>↗</b></div>
+          </a>
+          <a class="quick-tool quick-qq" href="/qq-space-backup/">
+            <div class="tool-number">02</div><div class="tool-icon" aria-hidden="true"><strong>Q</strong><i></i></div>
+            <div class="tool-copy"><span>桌面软件 · Windows</span><h2>QQ空间备份助手</h2><p>把你有权访问的空间内容，整理成自己的本地备份。</p></div>
+            <div class="tool-go"><span>查看下载</span><b>↗</b></div>
+          </a>
+        </div>
+        <div class="console-foot"><span>SMALL TOOLS</span><i></i><span>REAL PROBLEMS</span></div>
+      </div>
+    </section>
+
+    <div class="ticker" aria-hidden="true"><div><span>打开就能用</span><b>✦</b><span>在线工具</span><b>✦</b><span>桌面软件</span><b>✦</b><span>版本可追溯</span><b>✦</b><span>打开就能用</span><b>✦</b><span>在线工具</span><b>✦</b><span>桌面软件</span><b>✦</b><span>版本可追溯</span></div></div>
+
+    <section class="directory shell" id="tool-index">
+      <div class="section-lead"><p class="section-index">[ 01 ] 工具目录</p><div><h2>今天要解决<br>什么问题？</h2><p>按使用方式筛选。在线工具直接打开；桌面软件提供版本、校验值和多个下载渠道。</p></div></div>
+      <div class="filter-bar" role="group" aria-label="筛选工具"><button class="active" type="button" data-filter="all">全部工具 <span>02</span></button><button type="button" data-filter="online">在线使用 <span>01</span></button><button type="button" data-filter="desktop">桌面软件 <span>01</span></button></div>
+      <div class="tool-list">
+        <a class="list-tool" href="/image-compressor/" data-type="online"><span class="list-number">01</span><div class="list-symbol image-symbol" aria-hidden="true"><i></i><i></i></div><div class="list-name"><small>ONLINE · 图片处理</small><h3>本地图片压缩</h3></div><p>图片只在浏览器内处理。批量压缩、切换格式、对比体积，然后直接下载。</p><div class="list-tags"><span>免费</span><span>无需上传</span></div><b class="list-arrow">↗</b></a>
+        <a class="list-tool" href="/qq-space-backup/" data-type="desktop"><span class="list-number">02</span><div class="list-symbol qq-symbol" aria-hidden="true">Q</div><div class="list-name"><small>WINDOWS · 内容备份</small><h3>QQ空间备份助手</h3></div><p>在 Windows 电脑运行，建立本地备份。下载页提供版本记录和 SHA-256。</p><div class="list-tags"><span>Windows</span><span>本地工具</span></div><b class="list-arrow">↗</b></a>
+      </div>
+      <div class="empty-state" hidden>这个分类暂时没有工具。</div>
+    </section>
+
+    <section class="manifesto" id="about"><div class="shell manifesto-grid"><p class="section-index light">[ 02 ] 为什么做</p><div class="manifesto-copy"><p>很多工具的功能只有一句话，使用它却要经过登录、订阅、上传和等待。</p><h2>这里反过来。<br><em>先把事情做完。</em></h2></div><ol><li><b>打开</b><span>入口直接，知道下一步该点哪里。</span></li><li><b>说明</b><span>联网还是本地、文件去向、系统要求都写清楚。</span></li><li><b>完成</b><span>不制造多余流程，让工具回到解决问题本身。</span></li></ol></div></section>
+
+    <section class="next-tool shell"><span class="giant-plus" aria-hidden="true">＋</span><div><p class="section-index">[ 03 ] 继续生长</p><h2>下一个小工具，<br>正在路上。</h2></div><div class="next-copy"><p>这里会继续收录用 vibe coding 做出来的实用工具。小而具体，能解决问题就好。</p><a href="mailto:2778934515@qq.com">建议一个工具 ↗</a></div></section>
+  </main>
+
+  <footer class="site-footer shell"><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"><i></i><i></i></span><span>帕尼尼工具箱</span></a><p>打开就能用的在线工具与桌面软件。</p><div><a href="https://panini-pigs.cn/">主站 ↗</a><a href="mailto:2778934515@qq.com">联系作者</a><a href="#top">回到顶部 ↑</a></div></footer>
+  <script src="app.js"></script>
+</body>
+</html>
+
