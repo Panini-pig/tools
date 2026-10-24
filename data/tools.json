@@ -16,34 +16,12 @@
       "name": "QQ空间备份助手",
       "type": "desktop",
       "status": "active",
-      "path": "/qq-space-backup/",
-      "sourceDirectory": "../../qq-space-backup",
-      "summary": "下载到 Windows 电脑使用，为你有权访问的 QQ 空间内容建立本地备份。",
+      "path": "https://qzone.education-teacher-wang.cn/",
+      "sourceDirectory": null,
+      "summary": "前往独立工具站查看 QQ 空间备份助手的介绍、使用说明和最新下载方式。",
       "platforms": ["Windows"],
-      "downloads": [
-        {
-          "provider": "direct",
-          "label": "站内直接下载",
-          "url": "/qq-space-backup/#download",
-          "delivery": "browser-assembled-chunks",
-          "sizeBytes": 34470705,
-          "sha256": "642295BCDF36846542104D3746883AF9722427942B3C23F69A6A80384CB9B6F7",
-          "contents": {
-            "file": "QQ空间备份助手.exe",
-            "sizeBytes": 87349760,
-            "sha256": "F684158B4EBF0664ECD3482E9B9C2F2509BB01EB9F76CFA281B15801E7287214"
-          }
-        },
-        {"provider": "lanzou", "label": "蓝奏云", "url": null},
-        {"provider": "123pan", "label": "123 云盘", "url": null}
-      ],
-      "versions": [
-        {
-          "label": "首个收录版本",
-          "releaseDate": "2026-10-24",
-          "file": "QQ空间备份助手.zip"
-        }
-      ]
+      "external": true,
+      "versions": []
     }
   ]
 }
