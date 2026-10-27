@@ -37,6 +37,12 @@ async function hydrate() {
     setField("platforms", (tool.platforms || []).join(" / "));
     setField("sha256", tool.sha256 || "");
 
+    if (tool.storeUrl) {
+      document.querySelectorAll("[data-store-link]").forEach((link) => {
+        link.href = tool.storeUrl;
+      });
+    }
+
     if (tool.downloadUrl) {
       document.querySelectorAll("[data-download-file]").forEach((link) => {
         link.href = tool.downloadUrl;

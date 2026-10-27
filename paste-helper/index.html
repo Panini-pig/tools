@@ -23,7 +23,7 @@
       }
     })();
   </script>
-  <meta name="description" content="剪贴板键入助手：在 Edge / Chrome 的输入框里用模拟键盘输入剪贴板内容，绕过网站的禁止粘贴限制。">
+  <meta name="description" content="剪贴板键入助手已上架 Edge 加载项商店：在输入框里用模拟键盘输入剪贴板内容，绕过网站的禁止粘贴限制。商店直接安装，不需要下载 ZIP 或打开开发人员模式。">
   <title>剪贴板键入助手 · 帕尼尼工具箱</title>
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
   <link rel="stylesheet" href="../assets/base.css">
@@ -103,11 +103,12 @@
         <div class="tool-hero-copy">
           <div class="tool-badges">
             <span class="badge badge-accent">浏览器插件</span>
+            <span class="badge badge-success badge-dot">已上架 Edge 加载项商店</span>
             <span class="badge">Edge / Chrome 116+</span>
             <span class="badge badge-dot">本地处理</span>
           </div>
           <h1 id="tool-title">剪贴板键入助手</h1>
-          <p>把剪贴板内容以模拟键盘输入的方式填进禁止粘贴的输入框。</p>
+          <p>把剪贴板内容以模拟键盘输入的方式填进禁止粘贴的输入框。扩展已上架 Edge 加载项商店，不用再下载 ZIP、解压到本地或打开开发人员模式。</p>
         </div>
       </div>
     </section>
@@ -123,6 +124,7 @@
             <li>兼容 textarea、input、contenteditable、开放 Shadow DOM 和 iframe。</li>
             <li>本地处理，不联网、不上报、不保存剪贴板内容。</li>
           </ul>
+          <p class="notice"><strong>安装方式：</strong>扩展已上架 Edge 加载项商店，在商店页点“获取”就能装好。原来的下载 ZIP、解压到本地、打开开发人员模式再“加载已解压的扩展”这一整套都不需要了。<a href="#install">查看安装步骤</a></p>
           <p class="notice"><strong>适用范围：</strong>Canvas 类编辑器（Google Docs、部分在线 Office）不依赖 DOM 输入框，本扩展无法输入；页面完全禁用右键时，请使用快捷键。</p>
         </section>
 
@@ -142,29 +144,51 @@
 
         <section id="install" aria-labelledby="install-title">
           <h2 id="install-title">安装</h2>
+          <p>扩展已经上架 Edge 加载项商店。装商店版不需要下载文件，也不需要打开开发人员模式。</p>
           <ol class="steps">
             <li>
-              <strong>下载并解压</strong>
-              <p>下载 ZIP 后解压到一个固定文件夹。解压后的目录里应直接看到 <code>manifest.json</code>。</p>
+              <strong>打开 Edge 加载项商店</strong>
+              <p>点下载面板里的“在 Edge 加载项商店安装”，链接会在新窗口打开；也可以直接在商店里搜索“剪贴板键入助手”。</p>
             </li>
             <li>
-              <strong>打开扩展管理页</strong>
-              <p>Edge 打开 <code>edge://extensions</code>；Chrome 打开 <code>chrome://extensions</code>。</p>
+              <strong>点“获取”并确认</strong>
+              <p>在提示条里点“添加扩展”，浏览器会自动下载并启用，装完就能用。</p>
             </li>
             <li>
-              <strong>开启开发人员模式</strong>
-              <p>打开页面上的“开发人员模式”开关。</p>
-            </li>
-            <li>
-              <strong>加载已解压的扩展</strong>
-              <p>点击“加载解压缩的扩展”，选择刚才解压出来的文件夹，而不是 ZIP 文件。</p>
-            </li>
-            <li>
-              <strong>刷新页面并固定</strong>
-              <p>刷新安装前已经打开的网页；在工具栏的拼图菜单里把扩展固定出来，方便查看设置。</p>
+              <strong>固定到工具栏并刷新页面</strong>
+              <p>在工具栏的拼图菜单里把扩展固定出来；安装前已经打开的网页需要刷新一次，右键菜单才会出现。</p>
             </li>
           </ol>
-          <p class="notice">扩展没有上架扩展商店，属于本地加载。Edge 可能提示“是否允许来自其他商店的扩展”，选择允许即可。</p>
+          <p class="notice">商店版会在后台自动更新，不用再手动换版本；卸载也在同一个页面完成。</p>
+          <details class="legacy-install">
+            <summary>仍然要离线安装（下载 ZIP）？</summary>
+            <div class="legacy-install-body">
+              <p class="fineprint">只有装不了商店版的情况才走这条路，比如 Chrome，或者没有外网的内网环境。这条路要手动解压、手动加载，更新也要自己换包。</p>
+              <ol class="steps">
+                <li>
+                  <strong>下载并解压</strong>
+                  <p><a data-download-file href="files/clipboard-type-helper-v1.0.0.zip" download="剪贴板键入助手-v1.0.0.zip">下载备用 ZIP（v1.0.0）</a>，解压到一个固定文件夹。解压后的目录里应直接看到 <code>manifest.json</code>。</p>
+                </li>
+                <li>
+                  <strong>打开扩展管理页</strong>
+                  <p>Edge 打开 <code>edge://extensions</code>；Chrome 打开 <code>chrome://extensions</code>。</p>
+                </li>
+                <li>
+                  <strong>开启开发人员模式</strong>
+                  <p>打开页面上的“开发人员模式”开关。</p>
+                </li>
+                <li>
+                  <strong>加载已解压的扩展</strong>
+                  <p>点击“加载解压缩的扩展”，选择刚才解压出来的文件夹，而不是 ZIP 文件。</p>
+                </li>
+                <li>
+                  <strong>刷新页面并固定</strong>
+                  <p>刷新安装前已经打开的网页；在工具栏的拼图菜单里把扩展固定出来，方便查看设置。</p>
+                </li>
+              </ol>
+              <p class="fineprint">扩展没有上架 Chrome 网上应用店，Chrome 只能走这套本地加载；Edge 可能提示“是否允许来自其他商店的扩展”，选择允许即可。</p>
+            </div>
+          </details>
         </section>
 
         <section aria-labelledby="permissions-title">
@@ -193,6 +217,7 @@
                 <span class="badge badge-success">当前版本</span>
               </div>
               <ul>
+                <li>已上架 Edge 加载项商店，可直接在线安装，无需下载 ZIP 或打开开发人员模式。</li>
                 <li>右键“从剪贴板输入（模拟键盘）”与 Alt+Shift+V 快捷键。</li>
                 <li>逐字 / 整段输入，可调间隔，长文本自动分批。</li>
                 <li>兼容 textarea、input、contenteditable、开放 Shadow DOM 和 iframe。</li>
@@ -205,27 +230,28 @@
 
       <aside class="download-panel" aria-labelledby="download-title">
         <div class="download-panel-top">
-          <span class="badge badge-success badge-dot">当前可下载</span>
-          <h2 id="download-title">下载</h2>
+          <span class="badge badge-success badge-dot">已上架商店</span>
+          <h2 id="download-title">获取</h2>
           <p class="download-version">最新版本 <strong data-tool="version">v1.0.0</strong> · <span data-tool="updated">2026-10-27</span></p>
         </div>
         <dl class="download-meta">
           <div><dt>平台</dt><dd data-tool="platforms">Edge / Chrome 116+</dd></div>
-          <div><dt>大小</dt><dd data-tool="size">49 KB</dd></div>
-          <div><dt>格式</dt><dd>ZIP · 解压加载</dd></div>
+          <div><dt>来源</dt><dd>Edge 加载项商店</dd></div>
+          <div><dt>备用包</dt><dd data-tool="size">49 KB</dd></div>
         </dl>
-        <a class="btn btn-primary btn-block" data-download-file href="files/clipboard-type-helper-v1.0.0.zip" download="剪贴板键入助手-v1.0.0.zip">
-          下载 ZIP
+        <a class="btn btn-primary btn-block" data-store-link href="https://microsoftedge.microsoft.com/addons/detail/%E5%89%AA%E8%B4%B4%E6%9D%BF%E9%94%AE%E5%85%A5%E5%8A%A9%E6%89%8B/nfpjealcmlhljfdljhmklfabbkdokhem" target="_blank" rel="noopener noreferrer" aria-label="在 Edge 加载项商店安装剪贴板键入助手（在新窗口打开）">
+          在 Edge 加载项商店安装
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 3v12"></path>
-            <path d="m7 10 5 5 5-5"></path>
-            <path d="M5 21h14"></path>
+            <path d="M14 4h6v6"></path>
+            <path d="m20 4-10 10"></path>
+            <path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h5"></path>
           </svg>
         </a>
         <a class="btn btn-secondary btn-block" href="#install">查看安装步骤</a>
-        <p class="download-note">扩展未上架商店。下载并解压后，在 edge://extensions 或 chrome://extensions 里“加载已解压的扩展”。</p>
+        <p class="download-note">主渠道是 Edge 加载项商店：点“获取”就能装好，不需要 ZIP，也不需要打开开发人员模式。下载和更新都在商店完成。</p>
+        <p class="download-fallback">不能装商店版？<a data-download-file href="files/clipboard-type-helper-v1.0.0.zip" download="剪贴板键入助手-v1.0.0.zip">下载备用 ZIP</a>，手动解压加载</p>
         <details class="hash-details">
-          <summary>SHA-256 校验值</summary>
+          <summary>备用 ZIP 的 SHA-256 校验值</summary>
           <code data-tool="sha256">E4F9F2CFF64DD41BC84A8D67E72AA0A1466588629D659B7C0B643BFBC779C6A6</code>
         </details>
       </aside>

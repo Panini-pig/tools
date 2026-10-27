@@ -369,6 +369,89 @@
   line-height: 1.7;
 }
 
+.download-fallback {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.download-fallback a {
+  color: var(--muted);
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 3px;
+}
+
+.download-fallback a:hover {
+  color: var(--ink);
+  text-decoration-color: currentColor;
+}
+
+/* ---------- Offline install (legacy fallback, collapsed) ---------- */
+
+.legacy-install {
+  margin-top: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+
+.legacy-install > summary {
+  padding: 10px 14px;
+  color: var(--muted);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.legacy-install[open] > summary {
+  border-bottom: 1px solid var(--line);
+}
+
+.legacy-install-body {
+  padding: 6px 14px 14px;
+}
+
+.legacy-install-body .steps {
+  margin-top: 10px;
+}
+
+.legacy-install-body .steps li + li {
+  margin-top: 12px;
+}
+
+.legacy-install-body .steps strong {
+  font-size: 13px;
+}
+
+.legacy-install-body .steps p {
+  font-size: 12px;
+}
+
+.legacy-install-body .fineprint {
+  margin-top: 12px;
+}
+
+.legacy-install-body .fineprint a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.notice + .notice {
+  margin-top: 10px;
+}
+
+.notice a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.notice a:hover {
+  color: var(--accent-ink);
+}
+
 /* ---------- Responsive ---------- */
 
 @media (max-width: 960px) {

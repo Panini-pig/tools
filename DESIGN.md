@@ -396,8 +396,9 @@ python -m http.server 8137 --directory dist
 ### 7.3 浏览器插件
 
 - `category` 用 `extension`；详情页写清支持的浏览器（Chrome / Edge / Firefox）、安装方式、权限说明、版本记录。
-- 安装包放在详情页同级的 `files/` 下，按钮用 `download` 属性给出中文文件名；`downloadUrl` 写相对详情页的路径，`sha256` 写文件校验值，构建会验证文件存在。
-- 应用商店链接用 `externalUrl`；没有上架前不要放“即将上线”的假卡片。当前示例：`paste-helper/`。
+- 已上架商店的插件：`storeUrl` 写商店详情页，主按钮指向商店并带外链图标；安装说明按商店流程写，不要再教“下载 ZIP + 开发人员模式”。
+- 没有上架商店时才把安装包放在详情页同级的 `files/` 下，按钮用 `download` 属性给出中文文件名；`downloadUrl` 写相对详情页的路径，`sha256` 写文件校验值，构建会验证文件存在。
+- 上架后 ZIP 只作为备用：放进下载面板底部的小字链接或折叠区，说明“手动解压加载”。当前示例：`paste-helper/`。
 
 ### 7.4 字段说明
 
@@ -418,6 +419,7 @@ python -m http.server 8137 --directory dist
 | `meta` | 否 | 额外卡片信息，如 `["免费", "图片不上传"]` |
 | `tags` | 否 | 只用于搜索，不显示 |
 | `externalUrl` | 否 | 外部官网/详情地址 |
+| `storeUrl` | 否 | 浏览器插件的商店详情页；详情页主按钮指向这里，ZIP 降为备用入口 |
 | `downloadUrl` | 否 | 下载地址；相对路径相对详情页，外部地址用 `https://`；构建会校验相对文件存在 |
 | `sha256` | 否 | 安装包 SHA-256，详情页可折叠展示 |
 | `versions` | 否 | `[{version, date, current, notes[]}]`，详情页版本记录 |
