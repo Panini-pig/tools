@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f5f1">
+  <meta name="description" content="QQ空间备份助手：把你有权访问的 QQ 空间内容，备份成可以离线浏览的本地网页。查看版本、界面和使用说明。">
+  <title>QQ空间备份助手 · 帕尼尼工具箱</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="stylesheet" href="../assets/base.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body id="top" data-tool-id="qq-space-backup">
+  <a class="skip-link" href="#main">跳到正文</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="../" aria-label="帕尼尼工具箱首页">
+        <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false">
+          <rect x="3.5" y="10" width="25" height="17.5" rx="3.5" stroke="currentColor" stroke-width="2"/>
+          <path d="M11 10V7.5a5 5 0 0 1 10 0V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <rect class="latch" x="12.5" y="16" width="7" height="3" rx="1.5"/>
+        </svg>
+        <span>帕尼尼工具箱</span>
+      </a>
+
+      <div class="header-right">
+        <a class="btn btn-secondary btn-sm" href="../">返回工具箱</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb container" aria-label="面包屑">
+      <ol>
+        <li><a href="../">工具箱</a></li>
+        <li><a href="../#desktop">桌面软件</a></li>
+        <li aria-current="page">QQ空间备份助手</li>
+      </ol>
+    </nav>
+
+    <section class="tool-hero container" aria-labelledby="tool-title">
+      <div class="tool-hero-main">
+        <span class="tool-icon tool-icon-lg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="4" rx="1"></rect>
+            <path d="M5 8v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8"></path>
+            <path d="M10 12h4"></path>
+            <path d="m12 15 0 4"></path>
+            <path d="m10.5 17.5 1.5 1.5 1.5-1.5"></path>
+          </svg>
+        </span>
+        <div class="tool-hero-copy">
+          <div class="tool-badges">
+            <span class="badge badge-accent">桌面软件</span>
+            <span class="badge">Windows 10/11</span>
+            <span class="badge">外部下载</span>
+          </div>
+          <h1 id="tool-title">QQ空间备份助手</h1>
+          <p>把你有权访问的 QQ 空间内容，备份成可以离线浏览的本地网页。</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="tool-layout container">
+      <div class="tool-body">
+        <section aria-labelledby="about-title">
+          <h2 id="about-title">这个工具做什么</h2>
+          <p>一个在 Windows 上运行的本地工具。它把说说、相册、视频、留言等内容增量备份到你指定的文件夹，并生成可以离线打开的网页。重复备份时只处理新增或变化的内容。</p>
+          <ul class="feature-list">
+            <li>支持说说、相册、视频、留言、好友、访客、收藏、分享等内容。</li>
+            <li>备份结果是一个本地网页，不依赖网络也能翻看。</li>
+            <li>可以在本机体检、修复，补全评论和浏览量。</li>
+            <li>数据只写入你指定的文件夹，不上传到服务器。</li>
+          </ul>
+          <p class="notice"><strong>关于授权：</strong>体检与浏览免费；备份、修复类操作需要激活码。购买和激活都在独立站完成。</p>
+        </section>
+
+        <section aria-labelledby="shots-title">
+          <h2 id="shots-title">界面</h2>
+          <div class="shots">
+            <figure class="shot">
+              <img src="images/app.webp" width="1000" height="834" alt="QQ空间备份助手的任务面板，左侧是功能列表，右侧是备份进度和日志" loading="lazy">
+              <figcaption>选择要备份的内容，任务在本机运行。<a href="images/app.webp" target="_blank" rel="noopener noreferrer">查看大图</a></figcaption>
+            </figure>
+            <figure class="shot">
+              <img src="images/archive.webp" width="1100" height="688" alt="备份生成的离线网页，包含相册、月份和说说列表" loading="lazy">
+              <figcaption>备份结果是一个可以离线打开的网页。<a href="images/archive.webp" target="_blank" rel="noopener noreferrer">查看大图</a></figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section aria-labelledby="steps-title">
+          <h2 id="steps-title">使用前</h2>
+          <ol class="steps">
+            <li>
+              <strong>下载并解压</strong>
+              <p>从独立站下载 ZIP 压缩包，解压后运行里面的 EXE。程序是单文件，不需要安装。</p>
+            </li>
+            <li>
+              <strong>登录并选择内容</strong>
+              <p>在程序里登录你有权访问的 QQ 空间，选择要备份的说说、相册、视频或留言。</p>
+            </li>
+            <li>
+              <strong>在本机完成备份</strong>
+              <p>数据写入你指定的本地文件夹，生成可以离线浏览的网页。请只备份你有权访问的内容。</p>
+            </li>
+          </ol>
+        </section>
+
+        <section id="versions" aria-labelledby="versions-title">
+          <div class="section-line">
+            <h2 id="versions-title">版本记录</h2>
+            <span class="meta" id="versionSummary">当前共 1 个版本</span>
+          </div>
+          <div class="version-list" id="versionList">
+            <article class="version-item">
+              <div class="version-head">
+                <strong>v1.5.7</strong>
+                <span>2026-10-27</span>
+                <span class="badge badge-success">当前版本</span>
+              </div>
+              <ul>
+                <li>支持说说、相册、视频、留言、好友、访客、收藏、分享的增量备份。</li>
+                <li>备份结果会生成可以离线浏览的本地网页。</li>
+                <li>体检与浏览免费；备份、修复类操作需要激活码。</li>
+              </ul>
+            </article>
+          </div>
+          <p class="fineprint">更早的版本和完整说明请见 <a href="https://qzone.education-teacher-wang.cn/" target="_blank" rel="noopener noreferrer">独立站</a>。</p>
+        </section>
+      </div>
+
+      <aside class="download-panel" aria-labelledby="download-title">
+        <div class="download-panel-top">
+          <span class="badge badge-success badge-dot">当前可下载</span>
+          <h2 id="download-title">下载</h2>
+          <p class="download-version">最新版本 <strong data-tool="version">v1.5.7</strong> · <span data-tool="updated">2026-10-27</span></p>
+        </div>
+        <dl class="download-meta">
+          <div>
+            <dt>平台</dt>
+            <dd data-tool="platforms">Windows 10/11</dd>
+          </div>
+          <div>
+            <dt>大小</dt>
+            <dd data-tool="size">34.3 MB</dd>
+          </div>
+          <div>
+            <dt>格式</dt>
+            <dd>ZIP · 解压运行</dd>
+          </div>
+        </dl>
+        <a class="btn btn-primary btn-block" data-external="download" href="https://qzone.education-teacher-wang.cn/#download" target="_blank" rel="noopener noreferrer" aria-label="前往独立站下载 Windows 版（新窗口）">
+          前往独立站下载
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 4h6v6"></path>
+            <path d="m20 4-9 9"></path>
+            <path d="M20 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h5"></path>
+          </svg>
+        </a>
+        <a class="btn btn-secondary btn-block" data-external="home" href="https://qzone.education-teacher-wang.cn/" target="_blank" rel="noopener noreferrer">访问工具官网</a>
+        <p class="download-note">下载、更新和授权都在独立站完成。本站不托管安装包，也不保存你的备份数据。</p>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div>
+        <a class="footer-brand" href="../" aria-label="帕尼尼工具箱首页">
+          <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false">
+            <rect x="3.5" y="10" width="25" height="17.5" rx="3.5" stroke="currentColor" stroke-width="2"/>
+            <path d="M11 10V7.5a5 5 0 0 1 10 0V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <rect class="latch" x="12.5" y="16" width="7" height="3" rx="1.5"/>
+          </svg>
+          <span>帕尼尼工具箱</span>
+        </a>
+        <p class="footer-note">小工具，解决具体问题。</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://panini-pigs.cn/">主站</a>
+        <a href="mailto:2778934515@qq.com">建议一个工具</a>
+        <a href="#top">回到顶部</a>
+      </div>
+      <p class="footer-copy">© 2026 帕尼尼猪猪</p>
+    </div>
+  </footer>
+
+  <script src="tool.js" defer></script>
+</body>
+</html>

@@ -1,27 +1,73 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
+  "site": {
+    "name": "帕尼尼工具箱",
+    "tagline": "小工具，拿来就用。",
+    "updated": "2026-10-27"
+  },
+  "categories": [
+    {
+      "id": "online",
+      "name": "在线工具",
+      "description": "打开网页就能用，不用安装",
+      "order": 1
+    },
+    {
+      "id": "desktop",
+      "name": "桌面软件",
+      "description": "下载到 Windows 电脑使用",
+      "order": 2
+    },
+    {
+      "id": "extension",
+      "name": "浏览器插件",
+      "description": "装进浏览器的轻量工具",
+      "order": 3
+    }
+  ],
   "tools": [
     {
       "id": "image-compressor",
       "name": "本地图片压缩",
-      "type": "online",
+      "category": "online",
       "status": "active",
-      "path": "/image-compressor/",
-      "sourceDirectory": "../../image-compressor",
-      "summary": "在浏览器本地压缩 JPG、PNG 和 WebP 图片，图片不会上传到服务器。",
-      "versions": []
+      "summary": "在浏览器里批量压缩 JPG、PNG、WebP，图片不会上传到服务器。",
+      "description": "选择图片，调整压缩质量和输出格式，在下载前对比体积。所有处理都在当前浏览器中完成，关闭页面后不会保留图片。",
+      "url": "image-compressor/",
+      "action": "打开工具",
+      "meta": ["免费", "图片不上传"],
+      "tags": ["图片", "压缩", "JPG", "PNG", "WebP", "本地处理"],
+      "icon": "image"
     },
     {
       "id": "qq-space-backup",
       "name": "QQ空间备份助手",
-      "type": "desktop",
+      "category": "desktop",
       "status": "active",
-      "path": "https://qzone.education-teacher-wang.cn/",
-      "sourceDirectory": null,
-      "summary": "前往独立工具站查看 QQ 空间备份助手的介绍、使用说明和最新下载方式。",
-      "platforms": ["Windows"],
-      "external": true,
-      "versions": []
+      "summary": "把你有权访问的 QQ 空间内容，备份成可以离线浏览的本地网页。",
+      "description": "一个在 Windows 上运行的本地工具。它把说说、相册、视频、留言等内容增量备份到你指定的文件夹，并生成可以离线打开的网页。",
+      "url": "https://qzone.education-teacher-wang.cn/",
+      "action": "前往独立站",
+      "externalUrl": "https://qzone.education-teacher-wang.cn/",
+      "downloadUrl": "https://qzone.education-teacher-wang.cn/#download",
+      "platforms": ["Windows 10/11"],
+      "version": "1.5.7",
+      "updated": "2026-10-27",
+      "size": "34.3 MB",
+      "tags": ["QQ空间", "备份", "相册", "说说", "离线浏览"],
+      "icon": "archive",
+      "versions": [
+        {
+          "version": "1.5.7",
+          "date": "2026-10-27",
+          "current": true,
+          "notes": [
+            "支持说说、相册、视频、留言、好友、访客、收藏、分享的增量备份。",
+            "备份结果会生成可以离线浏览的本地网页。",
+            "体检与浏览免费；备份、修复类操作需要激活码。"
+          ]
+        }
+      ]
     }
   ]
 }

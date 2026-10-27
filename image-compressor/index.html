@@ -1,27 +1,177 @@
 <!doctype html>
-<html lang="zh-CN" data-theme="dark">
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f5f1">
   <meta name="description" content="免费在线压缩 JPG、PNG 和 WebP 图片。图片仅在浏览器本地处理，不会上传服务器。">
-  <title>在线图片压缩 · 帕尼尼工具箱</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23d33f2b'/%3E%3Cpath d='M17 20h30v24H17z' fill='none' stroke='white' stroke-width='4'/%3E%3Cpath d='m20 40 9-10 7 7 5-6 6 9' fill='none' stroke='white' stroke-width='4'/%3E%3C/svg%3E">
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css">
+  <title>本地图片压缩 · 帕尼尼工具箱</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="stylesheet" href="../assets/base.css">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <header class="tool-header"><a class="brand" href="../" aria-label="返回网站首页"><img src="../images/site-icon.png" alt=""><span>帕尼尼工具箱</span></a><div class="header-actions"><span class="privacy-badge"><i></i> 图片不离开此设备</span><button class="theme-toggle" type="button" aria-label="切换至白天模式"><span aria-hidden="true">☾</span></button><a class="back-link" href="../">返回首页</a></div></header>
-  <main class="shell">
-    <section class="intro"><p class="eyebrow">LOCAL IMAGE LAB / 在线工具</p><h1>压缩图片，<em>不用上传。</em></h1><p>选择 JPG、PNG 或 WebP 图片，在浏览器里完成压缩、对比和下载。你的图片不会发送到服务器。</p></section>
-    <section class="workspace" aria-label="图片压缩工作区">
-      <div class="drop-zone" id="dropZone" tabindex="0" role="button" aria-controls="fileInput"><input id="fileInput" type="file" accept="image/jpeg,image/png,image/webp" multiple><div class="drop-icon" aria-hidden="true">＋</div><h2>拖入图片，或点击选择</h2><p>支持多选 JPG、PNG、WebP · 单张不超过 20 MB</p><button class="select-button" type="button">选择图片</button></div>
+<body id="top">
+  <a class="skip-link" href="#workspace">跳到压缩工具</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="../" aria-label="帕尼尼工具箱首页">
+        <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false">
+          <rect x="3.5" y="10" width="25" height="17.5" rx="3.5" stroke="currentColor" stroke-width="2"/>
+          <path d="M11 10V7.5a5 5 0 0 1 10 0V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <rect class="latch" x="12.5" y="16" width="7" height="3" rx="1.5"/>
+        </svg>
+        <span>帕尼尼工具箱</span>
+      </a>
+
+      <div class="header-right">
+        <a class="btn btn-secondary btn-sm" href="../">返回工具箱</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container tool-page">
+    <section class="tool-intro" aria-labelledby="tool-title">
+      <div class="tool-intro-copy">
+        <div class="tool-badges">
+          <span class="badge badge-accent">在线工具</span>
+          <span class="badge badge-dot">图片不离开此设备</span>
+        </div>
+        <h1 id="tool-title">压缩图片，不用上传。</h1>
+        <p>选择 JPG、PNG 或 WebP，在浏览器里压缩、对比和下载。图片不会上传到服务器。</p>
+      </div>
+      <dl class="tool-facts">
+        <div>
+          <dt>处理方式</dt>
+          <dd>浏览器本地</dd>
+        </div>
+        <div>
+          <dt>单张上限</dt>
+          <dd>20 MB</dd>
+        </div>
+        <div>
+          <dt>费用</dt>
+          <dd>免费</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="workspace" id="workspace" aria-label="图片压缩工作区">
+      <div class="drop-zone" id="dropZone" tabindex="0" role="button" aria-controls="fileInput" aria-label="选择 JPG、PNG 或 WebP 图片">
+        <input id="fileInput" class="sr-only" type="file" name="images" accept="image/jpeg,image/png,image/webp" multiple tabindex="-1" aria-label="选择图片文件">
+        <span class="drop-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5v14"></path>
+            <path d="M5 12h14"></path>
+          </svg>
+        </span>
+        <h2>拖入图片，或点击选择</h2>
+        <p>支持多选 JPG、PNG、WebP · 单张不超过 20 MB</p>
+        <span class="drop-cta" aria-hidden="true">选择图片</span>
+      </div>
+
       <div class="tool-panel" id="toolPanel" hidden>
-        <div class="settings"><div class="setting"><div class="label-row"><label for="quality">压缩质量</label><output id="qualityValue" for="quality">80%</output></div><input id="quality" type="range" min="10" max="100" value="80"><div class="range-labels"><span>体积更小</span><span>画质更高</span></div></div><div class="setting"><label for="format">输出格式</label><select id="format"><option value="image/jpeg">JPEG · 通用</option><option value="image/webp">WebP · 体积更小</option><option value="image/png">PNG · 适合透明图</option></select></div><button class="add-more" id="addMore" type="button">＋ 继续添加</button></div>
-        <div class="summary" aria-live="polite"><div><span>图片</span><strong id="fileCount">0 张</strong></div><div><span>原始大小</span><strong id="totalOriginal">0 B</strong></div><div><span>压缩后</span><strong id="totalCompressed">处理中</strong></div><div class="saved"><span>预计节省</span><strong id="totalSaved">—</strong></div></div>
-        <div class="file-list" id="fileList"></div><div class="batch-actions"><button class="clear-button" id="clearAll" type="button">清空列表</button><button class="download-all" id="downloadAll" type="button">逐张下载全部图片</button></div>
+        <div class="settings">
+          <div class="setting">
+            <div class="label-row">
+              <label for="quality">压缩质量</label>
+              <output id="qualityValue" for="quality">80%</output>
+            </div>
+            <input id="quality" name="quality" type="range" min="10" max="100" value="80">
+            <div class="range-labels">
+              <span>体积更小</span>
+              <span>画质更高</span>
+            </div>
+          </div>
+          <div class="setting">
+            <label for="format">输出格式</label>
+            <select id="format" name="format">
+              <option value="image/jpeg">JPEG · 通用</option>
+              <option value="image/webp">WebP · 体积更小</option>
+              <option value="image/png">PNG · 适合透明图</option>
+            </select>
+          </div>
+          <button class="btn btn-secondary add-more" id="addMore" type="button">＋ 继续添加</button>
+        </div>
+
+        <h2 class="sr-only">压缩结果</h2>
+
+        <div class="summary" aria-live="polite">
+          <div><span>图片</span><strong id="fileCount">0 张</strong></div>
+          <div><span>原始大小</span><strong id="totalOriginal">0 B</strong></div>
+          <div><span>压缩后</span><strong id="totalCompressed">处理中</strong></div>
+          <div><span>预计节省</span><strong id="totalSaved">—</strong></div>
+        </div>
+
+        <div class="file-list" id="fileList"></div>
+
+        <div class="batch-actions">
+          <button class="btn btn-ghost clear-button" id="clearAll" type="button">清空列表</button>
+          <button class="btn btn-primary download-all" id="downloadAll" type="button" disabled>逐张下载全部图片</button>
+        </div>
       </div>
     </section>
-    <section class="notes" aria-label="使用说明"><article><b>01</b><div><h2>只在本机处理</h2><p>压缩过程完全在当前浏览器中完成，关闭页面后不会保留图片。</p></div></article><article><b>02</b><div><h2>所见即所得</h2><p>调整质量或格式后立即重新计算，可以在下载前查看尺寸与节省比例。</p></div></article><article><b>03</b><div><h2>关于 PNG</h2><p>浏览器对 PNG 的质量参数支持有限；想明显减小体积，可以选择 WebP。</p></div></article></section>
+
+    <section class="notes" aria-label="使用说明">
+      <article>
+        <h2>只在本机处理</h2>
+        <p>压缩过程完全在当前浏览器中完成，关闭页面后不会保留图片。</p>
+      </article>
+      <article>
+        <h2>所见即所得</h2>
+        <p>调整质量或格式后立即重新计算，可以在下载前查看尺寸与节省比例。</p>
+      </article>
+      <article>
+        <h2>关于 PNG</h2>
+        <p>浏览器对 PNG 的质量参数支持有限；想明显减小体积，可以选择 WebP。</p>
+      </article>
+    </section>
   </main>
-  <template id="fileCardTemplate"><article class="file-card"><div class="thumb-wrap"><img class="thumb" alt=""></div><div class="file-info"><div class="file-name-row"><h3 class="file-name"></h3><button class="remove" type="button" aria-label="移除图片">×</button></div><p class="dimensions"></p><div class="size-comparison"><span class="old-size"></span><i aria-hidden="true">→</i><strong class="new-size">处理中…</strong><em class="saving"></em></div><div class="progress"><span></span></div><p class="error" role="alert"></p></div><button class="download-one" type="button" disabled>下载</button></article></template>
-  <footer>浏览器本地处理 · 不上传图片 · 免费使用</footer><script src="script.js"></script>
-</body></html>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div>
+        <a class="footer-brand" href="../" aria-label="帕尼尼工具箱首页">
+          <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false">
+            <rect x="3.5" y="10" width="25" height="17.5" rx="3.5" stroke="currentColor" stroke-width="2"/>
+            <path d="M11 10V7.5a5 5 0 0 1 10 0V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <rect class="latch" x="12.5" y="16" width="7" height="3" rx="1.5"/>
+          </svg>
+          <span>帕尼尼工具箱</span>
+        </a>
+        <p class="footer-note">浏览器本地处理 · 不上传图片 · 免费使用</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://panini-pigs.cn/">主站</a>
+        <a href="mailto:2778934515@qq.com">问题反馈</a>
+        <a href="#top">回到顶部</a>
+      </div>
+      <p class="footer-copy">© 2026 帕尼尼猪猪</p>
+    </div>
+  </footer>
+
+  <template id="fileCardTemplate">
+    <article class="file-card">
+      <div class="thumb-wrap"><img class="thumb" alt="" width="72" height="72"></div>
+      <div class="file-info">
+        <div class="file-name-row">
+          <h3 class="file-name"></h3>
+          <button class="remove" type="button" aria-label="移除图片">×</button>
+        </div>
+        <p class="dimensions"></p>
+        <div class="size-comparison">
+          <span class="old-size"></span>
+          <i aria-hidden="true">→</i>
+          <strong class="new-size">处理中…</strong>
+          <em class="saving"></em>
+        </div>
+        <div class="progress"><span></span></div>
+        <p class="error" role="alert"></p>
+      </div>
+      <button class="btn btn-secondary btn-sm download-one" type="button" disabled>下载</button>
+    </article>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>

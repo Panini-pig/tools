@@ -1,0 +1,436 @@
+/* ============================================================
+   工具详情 / 下载页
+   ============================================================ */
+
+.breadcrumb {
+  padding-top: 20px;
+}
+
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.breadcrumb li {
+  display: inline-flex;
+  align-items: center;
+}
+
+.breadcrumb li + li::before {
+  content: "/";
+  margin: 0 8px;
+  color: var(--line-strong);
+}
+
+.breadcrumb a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.breadcrumb [aria-current="page"] {
+  color: var(--ink);
+}
+
+/* ---------- Tool hero ---------- */
+
+.tool-hero {
+  padding: 28px 0 32px;
+  border-bottom: 1px solid var(--line);
+}
+
+.tool-hero-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.tool-hero-copy {
+  min-width: 0;
+}
+
+.tool-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.tool-hero h1 {
+  font-size: clamp(30px, 4vw, 40px);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.035em;
+}
+
+.tool-hero-copy > p {
+  max-width: 680px;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+/* ---------- Layout ---------- */
+
+.tool-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 56px;
+  align-items: start;
+  padding-top: 34px;
+}
+
+.tool-body {
+  min-width: 0;
+}
+
+.tool-body > section + section {
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid var(--line);
+}
+
+.tool-body h2 {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+}
+
+.tool-body section > p {
+  max-width: 720px;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+/* ---------- Feature list ---------- */
+
+.feature-list {
+  margin-top: 18px;
+}
+
+.feature-list li {
+  position: relative;
+  padding-left: 18px;
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.feature-list li + li {
+  margin-top: 7px;
+}
+
+.feature-list li::before {
+  content: "";
+  position: absolute;
+  top: 0.72em;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 1px;
+  background: var(--accent);
+}
+
+.notice {
+  margin-top: 18px;
+}
+
+/* ---------- Screenshots ---------- */
+
+.shots {
+  display: grid;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.shot {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.shot img {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid var(--line);
+}
+
+.shot figcaption {
+  padding: 10px 14px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.shot figcaption a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.shot figcaption a:hover {
+  color: var(--accent-ink);
+}
+
+/* ---------- Steps ---------- */
+
+.steps {
+  counter-reset: step;
+  margin-top: 18px;
+}
+
+.steps li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 36px;
+}
+
+.steps li + li {
+  margin-top: 16px;
+}
+
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  top: 1px;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  color: var(--muted);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.steps strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.steps p {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+/* ---------- Versions ---------- */
+
+.section-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.version-list {
+  margin-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.version-item {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.version-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.version-head strong {
+  font-size: 16px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.version-head > span:not(.badge) {
+  color: var(--muted);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.version-item ul {
+  margin-top: 10px;
+}
+
+.version-item li {
+  position: relative;
+  padding-left: 14px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.version-item li + li {
+  margin-top: 3px;
+}
+
+.version-item li::before {
+  content: "";
+  position: absolute;
+  top: 0.78em;
+  left: 0;
+  width: 5px;
+  height: 1px;
+  background: var(--line-strong);
+}
+
+.versions-section .fineprint {
+  margin-top: 14px;
+}
+
+/* ---------- Download panel ---------- */
+
+.download-panel {
+  position: sticky;
+  top: calc(var(--header-h) + 24px);
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.download-panel-top h2 {
+  margin-top: 12px;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.download-version {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.download-version strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.download-meta {
+  margin: 18px 0;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.download-meta > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.download-meta > div + div {
+  margin-top: 7px;
+}
+
+.download-meta dt {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.download-meta dd {
+  color: var(--ink);
+  font-size: 12px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.download-panel .btn + .btn {
+  margin-top: 8px;
+}
+
+.download-note {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 960px) {
+  .tool-layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .download-panel {
+    position: static;
+    order: -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .breadcrumb {
+    padding-top: 14px;
+  }
+
+  .tool-hero {
+    padding: 20px 0 26px;
+  }
+
+  .tool-hero-main {
+    gap: 14px;
+  }
+
+  .tool-hero h1 {
+    font-size: 30px;
+  }
+
+  .tool-hero-copy > p {
+    font-size: 14px;
+  }
+
+  .tool-layout {
+    padding-top: 24px;
+  }
+
+  .tool-body > section + section {
+    margin-top: 32px;
+    padding-top: 24px;
+  }
+
+  .tool-icon-lg {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+  }
+
+  .tool-icon-lg svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .section-line {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .download-panel {
+    padding: 18px;
+  }
+}

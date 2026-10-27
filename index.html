@@ -1,70 +1,133 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="帕尼尼工具箱：打开就能用的在线工具与桌面软件。">
-  <title>帕尼尼工具箱 · 打开就能用</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#f6f5f1">
+  <meta name="description" content="帕尼尼工具箱：在线工具、桌面软件和浏览器插件。打开就能用，或下载到本地。">
+  <title>帕尼尼工具箱 · 小工具，拿来就用</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="assets/base.css">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body id="top">
+  <a class="skip-link" href="#tools">跳到工具列表</a>
+
   <header class="site-header">
-    <a class="brand" href="/" aria-label="帕尼尼工具箱首页"><span class="brand-mark" aria-hidden="true"><i></i><i></i></span><span>帕尼尼工具箱</span></a>
-    <nav aria-label="主导航"><a href="#tool-index">工具目录</a><a href="#about">为什么做</a><a href="https://panini-pigs.cn/">返回主站 ↗</a></nav>
-    <a class="header-cta" href="#tool-index">开始使用 <span>→</span></a>
+    <div class="container">
+      <a class="brand" href="./" aria-label="帕尼尼工具箱首页">
+        <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false">
+          <rect x="3.5" y="10" width="25" height="17.5" rx="3.5" stroke="currentColor" stroke-width="2"/>
+          <path d="M11 10V7.5a5 5 0 0 1 10 0V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <rect class="latch" x="12.5" y="16" width="7" height="3" rx="1.5"/>
+        </svg>
+        <span>帕尼尼工具箱</span>
+      </a>
+
+      <div class="header-right">
+        <nav class="site-nav" aria-label="主导航">
+          <a href="#tools" aria-current="page">工具</a>
+          <a href="#about">关于</a>
+        </nav>
+        <a class="btn btn-secondary btn-sm" href="https://panini-pigs.cn/">返回主站</a>
+      </div>
+    </div>
   </header>
 
   <main>
-    <section class="hero shell" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <p class="kicker"><span>VIBE CODING</span> 做出来，也真正用起来。</p>
-        <h1 id="hero-title"><span>工具不必复杂，</span><strong>解决问题<br>就够了。</strong></h1>
-        <p class="hero-intro">在线工具即开即用，桌面软件下载到本地。没有注册墙，没有绕路，找到工具就开始。</p>
-        <div class="hero-actions"><a class="button-primary" href="#tool-index">浏览全部工具 <span>↘</span></a><a class="text-link" href="/image-compressor/">直接压缩图片 <span>↗</span></a></div>
-        <div class="hero-proof" aria-label="工具箱特点"><span><b>01</b> 在线 + 本地</span><span><b>02</b> 说明透明</span><span><b>03</b> 持续更新</span></div>
-      </div>
-
-      <div class="tool-console" aria-label="热门工具快捷入口">
-        <div class="console-head"><div><span class="status-dot"></span><b>当前可用</b></div><span>2 TOOLS / 2026</span></div>
-        <div class="console-title"><p>不用翻菜单，<br>从这里直接开始。</p><span aria-hidden="true">↘</span></div>
-        <div class="quick-tools">
-          <a class="quick-tool quick-image" href="/image-compressor/">
-            <div class="tool-number">01</div><div class="tool-icon" aria-hidden="true"><span></span><i></i></div>
-            <div class="tool-copy"><span>在线工具 · 浏览器本地处理</span><h2>本地图片压缩</h2><p>批量压缩 JPG、PNG、WebP，图片不离开设备。</p></div>
-            <div class="tool-go"><span>立即使用</span><b>↗</b></div>
-          </a>
-          <a class="quick-tool quick-qq" href="https://qzone.education-teacher-wang.cn/" target="_blank" rel="noopener noreferrer">
-            <div class="tool-number">02</div><div class="tool-icon" aria-hidden="true"><strong>Q</strong><i></i></div>
-            <div class="tool-copy"><span>独立工具站 · Windows</span><h2>QQ空间备份助手</h2><p>前往独立工具站，查看使用说明并获取最新版本。</p></div>
-            <div class="tool-go"><span>查看下载</span><b>↗</b></div>
-          </a>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-inner">
+        <div>
+          <h1 id="hero-title">小工具，拿来就用。</h1>
+          <p class="hero-lead">在线工具、桌面软件、浏览器插件。没有注册墙，找到需要的，打开或下载。</p>
         </div>
-        <div class="console-foot"><span>SMALL TOOLS</span><i></i><span>REAL PROBLEMS</span></div>
+        <div class="hero-aside">
+          <label class="search">
+            <span class="sr-only">搜索工具</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"></circle>
+              <path d="m20 20-3.5-3.5"></path>
+            </svg>
+            <input id="toolSearch" name="q" type="search" placeholder="搜索工具、分类或用途…" autocomplete="off" spellcheck="false">
+          </label>
+          <p class="hero-count" id="toolCount" aria-live="polite">正在读取工具目录…</p>
+        </div>
       </div>
     </section>
 
-    <div class="ticker" aria-hidden="true"><div><span>打开就能用</span><b>✦</b><span>在线工具</span><b>✦</b><span>桌面软件</span><b>✦</b><span>版本可追溯</span><b>✦</b><span>打开就能用</span><b>✦</b><span>在线工具</span><b>✦</b><span>桌面软件</span><b>✦</b><span>版本可追溯</span></div></div>
-
-    <section class="directory shell" id="tool-index">
-      <div class="section-lead"><p class="section-index">[ 01 ] 工具目录</p><div><h2>今天要解决<br>什么问题？</h2><p>按使用方式筛选。在线工具直接打开；桌面软件提供版本、校验值和多个下载渠道。</p></div></div>
-      <div class="filter-bar" role="group" aria-label="筛选工具"><button class="active" type="button" data-filter="all">全部工具 <span>02</span></button><button type="button" data-filter="online">在线使用 <span>01</span></button><button type="button" data-filter="desktop">桌面软件 <span>01</span></button></div>
-      <div class="tool-list">
-        <a class="list-tool" href="/image-compressor/" data-type="online"><span class="list-number">01</span><div class="list-symbol image-symbol" aria-hidden="true"><i></i><i></i></div><div class="list-name"><small>ONLINE · 图片处理</small><h3>本地图片压缩</h3></div><p>图片只在浏览器内处理。批量压缩、切换格式、对比体积，然后直接下载。</p><div class="list-tags"><span>免费</span><span>无需上传</span></div><b class="list-arrow">↗</b></a>
-        <a class="list-tool" href="https://qzone.education-teacher-wang.cn/" target="_blank" rel="noopener noreferrer" data-type="desktop"><span class="list-number">02</span><div class="list-symbol qq-symbol" aria-hidden="true">Q</div><div class="list-name"><small>WINDOWS · 独立工具站</small><h3>QQ空间备份助手</h3></div><p>前往独立网站查看工具介绍、使用说明与最新下载方式。</p><div class="list-tags"><span>Windows</span><span>外部网站</span></div><b class="list-arrow">↗</b></a>
+    <section class="directory container" id="tools" aria-labelledby="tools-title">
+      <div class="directory-head">
+        <div class="directory-title">
+          <h2 id="tools-title">全部工具</h2>
+          <span class="result-count" id="resultCount" aria-live="polite"></span>
+        </div>
       </div>
-      <div class="empty-state" hidden>这个分类暂时没有工具。</div>
+
+      <div class="filters" id="categoryFilters" role="group" aria-label="按分类筛选工具"></div>
+      <div class="tool-grid" id="toolGrid" aria-live="polite"></div>
+
+      <div class="empty-state" id="emptyState" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+          <path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h3l2 2h6A2.5 2.5 0 0 1 20 9.5v7A2.5 2.5 0 0 1 17.5 19h-11A2.5 2.5 0 0 1 4 16.5v-9Z"></path>
+        </svg>
+        <h3 id="emptyTitle">这个分类还在筹备</h3>
+        <p id="emptyText">先看看全部工具，或者告诉我你想在这里看到什么。</p>
+        <button class="btn btn-secondary" id="emptyAction" type="button">查看全部工具</button>
+      </div>
+
+      <noscript>
+        <p class="noscript">工具列表需要 JavaScript 才能显示。你也可以直接访问
+          <a href="image-compressor/">本地图片压缩</a> 或
+          <a href="qq-space-backup/">QQ空间备份助手</a>。</p>
+      </noscript>
     </section>
 
-    <section class="manifesto" id="about"><div class="shell manifesto-grid"><p class="section-index light">[ 02 ] 为什么做</p><div class="manifesto-copy"><p>很多工具的功能只有一句话，使用它却要经过登录、订阅、上传和等待。</p><h2>这里反过来。<br><em>先把事情做完。</em></h2></div><ol><li><b>打开</b><span>入口直接，知道下一步该点哪里。</span></li><li><b>说明</b><span>联网还是本地、文件去向、系统要求都写清楚。</span></li><li><b>完成</b><span>不制造多余流程，让工具回到解决问题本身。</span></li></ol></div></section>
-
-    <section class="next-tool shell"><span class="giant-plus" aria-hidden="true">＋</span><div><p class="section-index">[ 03 ] 继续生长</p><h2>下一个小工具，<br>正在路上。</h2></div><div class="next-copy"><p>这里会继续收录用 vibe coding 做出来的实用工具。小而具体，能解决问题就好。</p><a href="mailto:2778934515@qq.com">建议一个工具 ↗</a></div></section>
+    <section class="about container" id="about" aria-labelledby="about-title">
+      <div class="about-grid">
+        <h2 id="about-title">关于这个工具箱</h2>
+        <div class="about-copy">
+          <p>这里收我自己做的小工具。能在线用的就直接打开；需要安装的，详情页会写清楚版本、平台和更新时间。不注册，也不把你的文件传到服务器。</p>
+          <div class="about-list">
+            <div>
+              <strong>在线工具</strong>
+              <span>在浏览器里运行，打开就能用。</span>
+            </div>
+            <div>
+              <strong>桌面软件</strong>
+              <span>下载到 Windows 使用，版本可追溯。</span>
+            </div>
+            <div>
+              <strong>浏览器插件</strong>
+              <span>装进浏览器，随开随用。</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer class="site-footer shell"><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"><i></i><i></i></span><span>帕尼尼工具箱</span></a><p>打开就能用的在线工具与桌面软件。</p><div><a href="https://panini-pigs.cn/">主站 ↗</a><a href="mailto:2778934515@qq.com">联系作者</a><a href="#top">回到顶部 ↑</a></div></footer>
-  <script src="app.js"></script>
+  <footer class="site-footer">
+    <div class="container">
+      <div>
+        <a class="footer-brand" href="./" aria-label="帕尼尼工具箱首页">
+          <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false">
+            <rect x="3.5" y="10" width="25" height="17.5" rx="3.5" stroke="currentColor" stroke-width="2"/>
+            <path d="M11 10V7.5a5 5 0 0 1 10 0V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <rect class="latch" x="12.5" y="16" width="7" height="3" rx="1.5"/>
+          </svg>
+          <span>帕尼尼工具箱</span>
+        </a>
+        <p class="footer-note">小工具，解决具体问题。</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://panini-pigs.cn/">主站</a>
+        <a href="mailto:2778934515@qq.com">建议一个工具</a>
+        <a href="#top">回到顶部</a>
+      </div>
+      <p class="footer-copy">© 2026 帕尼尼猪猪</p>
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
 </body>
 </html>
-
