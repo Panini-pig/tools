@@ -284,6 +284,9 @@ font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
 - 菜单用原生 radio group，选中项右侧是橙红圆点；鼠标打开不自动抢焦点，键盘打开（Enter/Space）聚焦当前项；Esc 关闭并回到开关；点击外部关闭。
 - `aria-expanded` / `aria-controls` 标在开关上，菜单 `role="group" aria-label="选择主题"`；开关的 `aria-label` 是“主题：深色，打开主题选择”这类当前状态描述。
 - 逻辑在 `assets/theme.js`；head 里的内联启动脚本只负责首屏读偏好，避免闪白。
+- 不要在 `focusout` 时立即关菜单：桌面鼠标按下会先触发 focusout，可能在 mouseup 前把菜单关掉，导致点选项无效。关闭交给外部点击、Esc、选择完成或再次点开关。
+- 菜单选项同时绑定 `click` 和原生 `change`：鼠标走 click，键盘走 change；不要只依赖 label 的默认 radio 行为。
+- `theme.js` 更新时同步把引用改成 `theme.js?v=N`，避免用户拿到旧缓存。
 - 切换后用 `role="status"` 的 sr-only 文本播报“已切换到深色/浅色/跟随系统”，不打断视觉。
 - 默认深色；选择后写入 `panini-tools-theme`；选择“跟随系统”时监听 `prefers-color-scheme` 并实时更新。
 

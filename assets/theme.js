@@ -83,6 +83,14 @@
         : `已切换到${mode === "dark" ? "深色" : "浅色"}模式`;
   }
 
+  function selectMode(mode) {
+    if (!MODES.includes(mode)) return;
+    apply(mode, true);
+    announce(mode);
+    closeMenu();
+    if (toggle) toggle.focus();
+  }
+
   function closeMenu() {
     if (!menu) return;
     menu.hidden = true;
@@ -129,19 +137,20 @@
       }
     });
 
-    control?.addEventListener("focusout", () => {
-      window.setTimeout(() => {
-        if (control && !control.contains(document.activeElement)) closeMenu();
-      }, 0);
+    menu.addEventListener("click", (event) => {
+      const option = event.target.closest(".theme-option");
+      if (!option) return;
+      const input = option.querySelector('input[name="theme-mode"]');
+      if (!input) return;
+      event.preventDefault();
+      input.checked = true;
+      selectMode(input.value);
     });
 
     menu.addEventListener("change", (event) => {
       const input = event.target.closest('input[name="theme-mode"]');
       if (!input) return;
-      apply(input.value, true);
-      announce(input.value);
-      closeMenu();
-      toggle.focus();
+      selectMode(input.value);
     });
   }
 
