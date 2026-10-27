@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark" data-theme-mode="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#151513">
+  <script>
+    (function () {
+      try {
+        var key = "panini-tools-theme";
+        var mode = localStorage.getItem(key);
+        if (mode !== "light" && mode !== "dark" && mode !== "system") mode = "dark";
+        var dark = mode === "system"
+          ? (window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)").matches : true)
+          : mode === "dark";
+        document.documentElement.dataset.theme = dark ? "dark" : "light";
+        document.documentElement.dataset.themeMode = mode;
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute("content", dark ? "#151513" : "#f6f5f1");
+      } catch (error) {
+        document.documentElement.dataset.theme = "dark";
+        document.documentElement.dataset.themeMode = "dark";
+      }
+    })();
+  </script>
+  <meta name="description" content="剪贴板键入助手：在 Edge / Chrome 的输入框里用模拟键盘输入剪贴板内容，绕过网站的禁止粘贴限制。">
+  <title>剪贴板键入助手 · 帕尼尼工具箱</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="stylesheet" href="../assets/base.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body id="top" data-tool-id="paste-helper">
+  <a class="skip-link" href="#main">跳到正文</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="../" aria-label="帕尼尼工具箱首页">
+        <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false">
+          <rect x="3.5" y="10" width="25" height="17.5" rx="3.5" stroke="currentColor" stroke-width="2"/>
+          <path d="M11 10V7.5a5 5 0 0 1 10 0V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <rect class="latch" x="12.5" y="16" width="7" height="3" rx="1.5"/>
+        </svg>
+        <span>帕尼尼工具箱</span>
+      </a>
+
+      <div class="header-right">
+        <a class="btn btn-secondary btn-sm" href="../">返回工具箱</a>
+        <div class="theme-control">
+          <span class="sr-only" data-theme-status role="status" aria-live="polite"></span>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="打开主题选择" aria-expanded="false" aria-controls="theme-menu" title="主题">
+            <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+            </svg>
+            <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"></path>
+            </svg>
+            <svg class="icon icon-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <circle cx="12" cy="12" r="8"></circle>
+              <path d="M12 4a8 8 0 0 1 0 16Z" fill="currentColor" stroke="none"></path>
+            </svg>
+          </button>
+          <div class="theme-menu" id="theme-menu" data-theme-menu role="group" aria-label="选择主题" hidden>
+            <label class="theme-option">
+              <input class="sr-only" type="radio" name="theme-mode" value="light">
+              <span class="theme-option-label">浅色</span>
+              <span class="theme-option-check" aria-hidden="true"></span>
+            </label>
+            <label class="theme-option">
+              <input class="sr-only" type="radio" name="theme-mode" value="dark">
+              <span class="theme-option-label">深色</span>
+              <span class="theme-option-check" aria-hidden="true"></span>
+            </label>
+            <label class="theme-option">
+              <input class="sr-only" type="radio" name="theme-mode" value="system">
+              <span class="theme-option-label">跟随系统</span>
+              <span class="theme-option-check" aria-hidden="true"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb container" aria-label="面包屑">
+      <ol>
+        <li><a href="../">工具箱</a></li>
+        <li><a href="../#extension">浏览器插件</a></li>
+        <li aria-current="page">剪贴板键入助手</li>
+      </ol>
+    </nav>
+
+    <section class="tool-hero container" aria-labelledby="tool-title">
+      <div class="tool-hero-main">
+        <span class="tool-icon tool-icon-lg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="6" y="4" width="12" height="17" rx="2"></rect>
+            <path d="M9 4V3h6v1"></path>
+            <path d="M9 9h6M9 13h6M9 17h4"></path>
+          </svg>
+        </span>
+        <div class="tool-hero-copy">
+          <div class="tool-badges">
+            <span class="badge badge-accent">浏览器插件</span>
+            <span class="badge">Edge / Chrome 116+</span>
+            <span class="badge badge-dot">本地处理</span>
+          </div>
+          <h1 id="tool-title">剪贴板键入助手</h1>
+          <p>把剪贴板内容以模拟键盘输入的方式填进禁止粘贴的输入框。</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="tool-layout container">
+      <div class="tool-body">
+        <section aria-labelledby="about-title">
+          <h2 id="about-title">这个工具做什么</h2>
+          <p>在任意可编辑的输入框里右键，选择“从剪贴板输入（模拟键盘）”，扩展会把剪贴板文本逐字写入。它不派发 <code>paste</code> 事件，所以网站基于 <code>onpaste</code>、<code>paste</code> 监听或 <code>clipboardData</code> 的拦截不会生效。</p>
+          <ul class="feature-list">
+            <li>右键菜单，或按 <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd> 直接输入。</li>
+            <li>逐字键入 / 整段输入两种方式，输入间隔 0–120ms，长文本自动分批。</li>
+            <li>兼容 textarea、input、contenteditable、开放 Shadow DOM 和 iframe。</li>
+            <li>本地处理，不联网、不上报、不保存剪贴板内容。</li>
+          </ul>
+          <p class="notice"><strong>适用范围：</strong>Canvas 类编辑器（Google Docs、部分在线 Office）不依赖 DOM 输入框，本扩展无法输入；页面完全禁用右键时，请使用快捷键。</p>
+        </section>
+
+        <section aria-labelledby="shots-title">
+          <h2 id="shots-title">界面</h2>
+          <div class="shots shots-split">
+            <figure class="shot">
+              <img src="images/popup.webp" width="720" height="1280" alt="剪贴板键入助手设置面板，包含右键使用说明、输入方式和输入间隔" loading="lazy">
+              <figcaption>设置面板：输入方式、间隔和快捷键。 <a href="images/popup.webp" target="_blank" rel="noopener noreferrer">查看大图</a></figcaption>
+            </figure>
+            <figure class="shot">
+              <img src="images/test-page.webp" width="1000" height="1356" alt="禁用粘贴测试页，各输入框的 paste 计数保持为 0，input 计数正常增长" loading="lazy">
+              <figcaption>禁用粘贴测试页：paste 计数保持 0，input 正常增长。 <a href="images/test-page.webp" target="_blank" rel="noopener noreferrer">查看大图</a></figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section id="install" aria-labelledby="install-title">
+          <h2 id="install-title">安装</h2>
+          <ol class="steps">
+            <li>
+              <strong>下载并解压</strong>
+              <p>下载 ZIP 后解压到一个固定文件夹。解压后的目录里应直接看到 <code>manifest.json</code>。</p>
+            </li>
+            <li>
+              <strong>打开扩展管理页</strong>
+              <p>Edge 打开 <code>edge://extensions</code>；Chrome 打开 <code>chrome://extensions</code>。</p>
+            </li>
+            <li>
+              <strong>开启开发人员模式</strong>
+              <p>打开页面上的“开发人员模式”开关。</p>
+            </li>
+            <li>
+              <strong>加载已解压的扩展</strong>
+              <p>点击“加载解压缩的扩展”，选择刚才解压出来的文件夹，而不是 ZIP 文件。</p>
+            </li>
+            <li>
+              <strong>刷新页面并固定</strong>
+              <p>刷新安装前已经打开的网页；在工具栏的拼图菜单里把扩展固定出来，方便查看设置。</p>
+            </li>
+          </ol>
+          <p class="notice">扩展没有上架扩展商店，属于本地加载。Edge 可能提示“是否允许来自其他商店的扩展”，选择允许即可。</p>
+        </section>
+
+        <section aria-labelledby="permissions-title">
+          <h2 id="permissions-title">权限</h2>
+          <p>扩展只在本地读取剪贴板、向当前页面写入文本、保存两个设置；没有网络请求，也不申请网络相关权限。</p>
+          <dl class="permission-list">
+            <div><dt>contextMenus</dt><dd>添加“从剪贴板输入”的右键菜单。</dd></div>
+            <div><dt>clipboardRead</dt><dd>读取当前剪贴板里的文本。</dd></div>
+            <div><dt>offscreen</dt><dd>MV3 后台没有 DOM，用不可见页面读取剪贴板作为兜底。</dd></div>
+            <div><dt>storage</dt><dd>保存输入方式和输入间隔设置。</dd></div>
+            <div><dt>scripting</dt><dd>对安装前已经打开的页面补注入内容脚本。</dd></div>
+            <div><dt>&lt;all_urls&gt;</dt><dd>在所有网站的输入框上工作，包括 iframe 子页面。</dd></div>
+          </dl>
+        </section>
+
+        <section id="versions" aria-labelledby="versions-title">
+          <div class="section-line">
+            <h2 id="versions-title">版本记录</h2>
+            <span class="meta" id="versionSummary">当前共 1 个版本</span>
+          </div>
+          <div class="version-list" id="versionList">
+            <article class="version-item">
+              <div class="version-head">
+                <strong>v1.0.0</strong>
+                <span>2026-10-27</span>
+                <span class="badge badge-success">当前版本</span>
+              </div>
+              <ul>
+                <li>右键“从剪贴板输入（模拟键盘）”与 Alt+Shift+V 快捷键。</li>
+                <li>逐字 / 整段输入，可调间隔，长文本自动分批。</li>
+                <li>兼容 textarea、input、contenteditable、开放 Shadow DOM 和 iframe。</li>
+                <li>本地处理，不联网、不保存剪贴板内容。</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+      </div>
+
+      <aside class="download-panel" aria-labelledby="download-title">
+        <div class="download-panel-top">
+          <span class="badge badge-success badge-dot">当前可下载</span>
+          <h2 id="download-title">下载</h2>
+          <p class="download-version">最新版本 <strong data-tool="version">v1.0.0</strong> · <span data-tool="updated">2026-10-27</span></p>
+        </div>
+        <dl class="download-meta">
+          <div><dt>平台</dt><dd data-tool="platforms">Edge / Chrome 116+</dd></div>
+          <div><dt>大小</dt><dd data-tool="size">49 KB</dd></div>
+          <div><dt>格式</dt><dd>ZIP · 解压加载</dd></div>
+        </dl>
+        <a class="btn btn-primary btn-block" data-download-file href="files/clipboard-type-helper-v1.0.0.zip" download="剪贴板键入助手-v1.0.0.zip">
+          下载 ZIP
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3v12"></path>
+            <path d="m7 10 5 5 5-5"></path>
+            <path d="M5 21h14"></path>
+          </svg>
+        </a>
+        <a class="btn btn-secondary btn-block" href="#install">查看安装步骤</a>
+        <p class="download-note">扩展未上架商店。下载并解压后，在 edge://extensions 或 chrome://extensions 里“加载已解压的扩展”。</p>
+        <details class="hash-details">
+          <summary>SHA-256 校验值</summary>
+          <code data-tool="sha256">E4F9F2CFF64DD41BC84A8D67E72AA0A1466588629D659B7C0B643BFBC779C6A6</code>
+        </details>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div>
+        <a class="footer-brand" href="../" aria-label="帕尼尼工具箱首页">
+          <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false">
+            <rect x="3.5" y="10" width="25" height="17.5" rx="3.5" stroke="currentColor" stroke-width="2"/>
+            <path d="M11 10V7.5a5 5 0 0 1 10 0V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <rect class="latch" x="12.5" y="16" width="7" height="3" rx="1.5"/>
+          </svg>
+          <span>帕尼尼工具箱</span>
+        </a>
+        <p class="footer-note">小工具，解决具体问题。</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://panini-pigs.cn/">主站</a>
+        <a href="mailto:2778934515@qq.com">问题反馈</a>
+        <a href="#top">回到顶部</a>
+      </div>
+      <p class="footer-copy">© 2026 帕尼尼猪猪</p>
+    </div>
+  </footer>
+
+  <script src="../assets/theme.js" defer></script>
+  <script src="tool.js" defer></script>
+</body>
+</html>

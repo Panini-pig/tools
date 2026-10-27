@@ -33,6 +33,17 @@ const ICONS = {
       <path d="m12 15 0 4"></path>
       <path d="m10.5 17.5 1.5 1.5 1.5-1.5"></path>
     </svg>`,
+  clipboard: `
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="6" y="4" width="12" height="17" rx="2"></rect>
+      <path d="M9 4V3h6v1"></path>
+      <path d="M9 9h6M9 13h6M9 17h4"></path>
+    </svg>`,
+  chat: `
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 12a8 8 0 0 1-8 8H5l-2 2V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8Z"></path>
+      <path d="M8 11h8M8 15h5"></path>
+    </svg>`,
   extension: `
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <path d="M9 4a3 3 0 0 1 6 0v1h3a1 1 0 0 1 1 1v3h1a3 3 0 0 1 0 6h-1v3a1 1 0 0 1-1 1h-3v-1a3 3 0 0 0-6 0v1H6a1 1 0 0 1-1-1v-3H4a3 3 0 0 1 0-6h1V6a1 1 0 0 1 1-1h3V4Z"></path>

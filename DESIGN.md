@@ -273,7 +273,7 @@ font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
 
 - 48×48（详情页 56×56），12–14px 圆角，`--accent-soft` 底。
 - 24×24 线稿，`stroke-width: 1.8`，`stroke-linecap: round`，墨黑 + 橙红两色。
-- 现有：`image`、`archive`、`extension`、`default`。新增图标加在 `main/app.js` 的 `ICONS` 里，并在 `tools.json` 的 `icon` 字段引用。
+- 现有：`image`、`archive`、`clipboard`、`chat`、`extension`、`default`。新增图标加在 `main/app.js` 的 `ICONS` 里，并在 `tools.json` 的 `icon` 字段引用。
 - 不使用工具原软件的彩色 logo 作为卡片图标；需要品牌图时放在详情页截图区。
 
 ### 4.11 主题开关
@@ -306,18 +306,24 @@ tools/
 │  ├─ index.html
 │  ├─ style.css
 │  └─ script.js
-├─ qq-space-backup/     # 桌面工具详情/下载页
+├─ qq-space-backup/     # 桌面工具详情/下载页模板
 │  ├─ index.html
 │  ├─ style.css
 │  ├─ tool.js
 │  └─ images/
+├─ paste-helper/        # 浏览器插件详情/下载页
+│  ├─ index.html
+│  ├─ style.css
+│  ├─ tool.js
+│  ├─ images/
+│  └─ files/            # 扩展 ZIP 安装包
 ├─ build.ps1
 ├─ DESIGN.md
 └─ dist/                # 构建产物，部署这个目录
 ```
 
 - 页面使用相对路径（`../assets/base.css`、`../data/tools.json`、`image-compressor/`），所以**不要直接双击源码 HTML**；先构建，再用静态服务器打开 `dist/`。相对路径让站点既能部署在 Cloudflare Pages 的域名根目录，也能部署在 GitHub Pages 的 `/tools/` 子路径。
-- `build.ps1` 会清空 `dist/`、复制资源、校验 JSON、检查工具指向的页面是否存在。
+- `build.ps1` 会清空 `dist/`、复制资源、校验 JSON、检查工具页面和相对 `downloadUrl` 文件是否存在。
 - 本地预览：
 
 ```powershell
@@ -387,7 +393,8 @@ python -m http.server 8137 --directory dist
 ### 7.3 浏览器插件
 
 - `category` 用 `extension`；详情页写清支持的浏览器（Chrome / Edge / Firefox）、安装方式、权限说明、版本记录。
-- 应用商店链接用 `externalUrl`；没有上架前保留分类为 0，不要放“即将上线”的假卡片。
+- 安装包放在详情页同级的 `files/` 下，按钮用 `download` 属性给出中文文件名；`downloadUrl` 写相对详情页的路径，`sha256` 写文件校验值，构建会验证文件存在。
+- 应用商店链接用 `externalUrl`；没有上架前不要放“即将上线”的假卡片。当前示例：`paste-helper/`。
 
 ### 7.4 字段说明
 
@@ -408,7 +415,8 @@ python -m http.server 8137 --directory dist
 | `meta` | 否 | 额外卡片信息，如 `["免费", "图片不上传"]` |
 | `tags` | 否 | 只用于搜索，不显示 |
 | `externalUrl` | 否 | 外部官网/详情地址 |
-| `downloadUrl` | 否 | 外部下载地址；桌面工具详情页的主按钮会读取它 |
+| `downloadUrl` | 否 | 下载地址；相对路径相对详情页，外部地址用 `https://`；构建会校验相对文件存在 |
+| `sha256` | 否 | 安装包 SHA-256，详情页可折叠展示 |
 | `versions` | 否 | `[{version, date, current, notes[]}]`，详情页版本记录 |
 
 ---

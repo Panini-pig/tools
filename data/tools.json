@@ -68,6 +68,52 @@
           ]
         }
       ]
+    },
+    {
+      "id": "paste-helper",
+      "name": "剪贴板键入助手",
+      "category": "extension",
+      "status": "active",
+      "summary": "把剪贴板内容以模拟键盘输入的方式填进禁止粘贴的输入框。",
+      "description": "在 Edge / Chrome 的输入框里右键选择“从剪贴板输入”，扩展会把剪贴板文本逐字写入。它不触发 paste 事件，适合网课、考试系统、政务与银行表单等禁止粘贴的页面。",
+      "url": "paste-helper/",
+      "action": "查看详情",
+      "platforms": ["Edge / Chrome 116+"],
+      "version": "1.0.0",
+      "updated": "2026-10-27",
+      "size": "49 KB",
+      "downloadUrl": "files/clipboard-type-helper-v1.0.0.zip",
+      "sha256": "E4F9F2CFF64DD41BC84A8D67E72AA0A1466588629D659B7C0B643BFBC779C6A6",
+      "tags": ["剪贴板", "粘贴", "浏览器扩展", "Edge", "Chrome"],
+      "icon": "clipboard",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "date": "2026-10-27",
+          "current": true,
+          "notes": [
+            "右键“从剪贴板输入（模拟键盘）”与 Alt+Shift+V 快捷键。",
+            "逐字 / 整段输入，可调输入间隔，长文本自动分批。",
+            "兼容 textarea、input、contenteditable、开放 Shadow DOM 和 iframe。",
+            "本地处理，不联网、不保存剪贴板内容。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "douyin-chat-backup",
+      "name": "抖音聊天记录备份工具",
+      "category": "desktop",
+      "status": "active",
+      "summary": "把抖音聊天记录和媒体导出为可离线查看的档案。",
+      "description": "面向 Windows 的抖音聊天记录导出工具，支持聊天记录、图片、视频与语音等媒体归档。详情、购买和下载请前往主站。",
+      "url": "https://panini-pigs.cn/",
+      "action": "前往主站",
+      "platforms": ["Windows x64"],
+      "version": "1.7.5",
+      "updated": "2026-10-16",
+      "tags": ["抖音", "聊天记录", "导出", "备份", "PDF"],
+      "icon": "chat"
     }
   ]
 }
