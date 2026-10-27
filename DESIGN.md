@@ -113,6 +113,8 @@ Footer
 | `--success-soft` | `#e8f3ed` | 成功徽章底 |
 | `--warning` | `#8a5d18` | 失败、变大、注意 |
 
+另有派生 token：`--on-ink`、`--ink-hover`、`--header-bg`、`--surface-hover`、`--focus-soft`、`--empty-bg`、`--menu-shadow`。深色值见 3.6。
+
 规则：
 
 - 橙红只做强调，不做大面积背景；正文强调用 `--accent-ink`，不要用 `--accent` 写小字。
@@ -157,6 +159,44 @@ font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
 - 只过渡 `color`、`background-color`、`border-color`、`transform`、`opacity`；禁止 `transition: all`。
 - 必须支持 `prefers-reduced-motion: reduce`。
 
+### 3.6 深色模式
+
+默认深色。三种偏好：`浅色`、`深色`、`跟随系统`。
+
+- 存储键：`panini-tools-theme`，值为 `light` / `dark` / `system`。首次没有存储时按 `dark`，不读取旧版图片压缩页的 `panini-theme`。
+- 页面 `<html>` 先写 `data-theme="dark" data-theme-mode="dark"`；`<head>` 内联启动脚本在 CSS 之前读取偏好并设置，避免刷新时闪白。
+- `assets/theme.js` 负责：应用主题、监听系统深浅色变化、更新 `theme-color`、跨标签页同步、开关菜单。
+- `[data-theme="dark"]` 覆盖令牌，并设置 `color-scheme: dark`，让原生控件、滚动条跟随。
+- 截图保持原样，只加深色底 + 1px 边框；不压暗、不反色，保证内容真实。
+
+| Token | 深色值 | 用途 |
+| --- | --- | --- |
+| `--bg` | `#151513` | 暖炭黑页面底 |
+| `--surface` | `#1d1d1a` | 卡片、面板、输入框 |
+| `--surface-muted` | `#252521` | 次级底色、hover 底 |
+| `--ink` | `#f2efe7` | 主文字、主按钮底色 |
+| `--ink-soft` | `#d8d4c9` | 列表正文 |
+| `--muted` | `#a6a297` | 说明文字、元信息 |
+| `--line` | `#34342e` | 常规分隔线、卡片边线 |
+| `--line-strong` | `#4a4a42` | hover 边线 |
+| `--line-control` | `#7a766c` | 表单控件边线（≥3:1） |
+| `--accent` | `#e06a4e` | 图标、状态点、少量强调 |
+| `--accent-soft` | `#33221c` | 图标底、当前分类浅底 |
+| `--accent-ink` | `#f2b09d` | 深色浅底上的强调文字 |
+| `--success` | `#86cba7` | 可下载、完成、节省 |
+| `--success-soft` | `#1c2f26` | 成功徽章底 |
+| `--warning` | `#e0b06a` | 失败、变大、注意 |
+| `--on-ink` | `#151513` | 主按钮/选中分类上的文字 |
+| `--ink-hover` | `#ffffff` | 主按钮 hover 底色 |
+| `--header-bg` | `rgba(21,21,19,.94)` | sticky header 半透明底 |
+
+规则：
+
+- 组件只读 token，不写死 `#fff` / `#000`。主按钮、选中分类、skip link 使用 `--on-ink`，否则深色下会出现“白底白字”。
+- 正文/说明对比度 ≥ 4.5:1；控件边界 ≥ 3:1。当前配色已按此检查。
+- 深色下卡片靠 `--surface` + `--line` 分层，不加阴影、不加发光。
+- 新增颜色必须同时提供浅色与深色值，并重新测对比度。
+
 ---
 
 ## 4. 组件
@@ -166,6 +206,7 @@ font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
 - 左：站标（28px 线稿工具箱 + “帕尼尼工具箱”）。
 - 中/右：主导航（仅首页：工具 / 关于）；子页只放“返回工具箱”次按钮。
 - 首页可放“返回主站”次按钮。
+- 最右：主题开关（36px 图标按钮 + 三态菜单），见 4.11。
 - 所有页面使用同一份结构、同一高度、同一底色；不要给子页换一套 header。
 
 ### 4.2 Footer
@@ -177,7 +218,7 @@ font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
 
 | 类型 | 用法 | 样式 |
 | --- | --- | --- |
-| `.btn-primary` | 页面唯一主操作：打开工具、下载 | 墨黑底白字，44px 高 |
+| `.btn-primary` | 页面唯一主操作：打开工具、下载 | 墨黑底（深色下米白底），文字用 `--on-ink`，44px 高 |
 | `.btn-secondary` | 次操作：返回、访问官网、查看全部 | 白底 1px 边，44px |
 | `.btn-ghost` | 低权重：清空、回到顶部 | 透明底，hover 浅底 |
 | `.btn-sm` | Header / 文件行内 | 36px 高 |
@@ -196,7 +237,7 @@ font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
 ### 4.5 搜索与分类
 
 - 搜索框 44px 高，左侧放大镜，`type="search"`，有可见 label（sr-only）。
-- 分类按钮 40px 高，默认白底细边；选中为墨黑底白字；数量用 12px、60% 透明度。
+- 分类按钮 40px 高，默认白底细边；选中为墨黑底（深色下米白底），文字用 `--on-ink`；数量用 12px、60% 透明度。
 - 桌面横向排列；移动端允许换行（当前实现）或横向滚动，但不能把分类藏在没有提示的滚动区里。
 - 0 个工具的分类保留，虚线边 + “筹备中”空状态。
 
@@ -235,6 +276,17 @@ font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
 - 现有：`image`、`archive`、`extension`、`default`。新增图标加在 `main/app.js` 的 `ICONS` 里，并在 `tools.json` 的 `icon` 字段引用。
 - 不使用工具原软件的彩色 logo 作为卡片图标；需要品牌图时放在详情页截图区。
 
+### 4.11 主题开关
+
+- 位置：header 最右，`返回主站/返回工具箱` 之后；36px 图标按钮，和 `.btn-sm` 同高。
+- 图标反映当前**解析后**的主题：深色显示月亮，浅色显示太阳，跟随系统显示半圆/自动图标。
+- 点击打开 184px 的三态菜单：`浅色` / `深色` / `跟随系统`。不是单键循环，避免用户不知道下一次会切到哪里。
+- 菜单用原生 radio group，选中项右侧是橙红圆点；鼠标打开不自动抢焦点，键盘打开（Enter/Space）聚焦当前项；Esc 关闭并回到开关；点击外部关闭。
+- `aria-expanded` / `aria-controls` 标在开关上，菜单 `role="group" aria-label="选择主题"`；开关的 `aria-label` 是“主题：深色，打开主题选择”这类当前状态描述。
+- 逻辑在 `assets/theme.js`；head 里的内联启动脚本只负责首屏读偏好，避免闪白。
+- 切换后用 `role="status"` 的 sr-only 文本播报“已切换到深色/浅色/跟随系统”，不打断视觉。
+- 默认深色；选择后写入 `panini-tools-theme`；选择“跟随系统”时监听 `prefers-color-scheme` 并实时更新。
+
 ---
 
 ## 5. 文件结构与构建
@@ -242,7 +294,8 @@ font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
 ```
 tools/
 ├─ assets/
-│  ├─ base.css          # 共用令牌、header/footer、按钮、徽章
+│  ├─ base.css          # 共用令牌、header/footer、按钮、徽章、主题开关
+│  ├─ theme.js          # 主题应用、三态菜单、系统监听、meta 更新
 │  └─ favicon.svg
 ├─ main/
 │  ├─ index.html        # 首页
@@ -263,7 +316,7 @@ tools/
 └─ dist/                # 构建产物，部署这个目录
 ```
 
-- 页面使用相对路径（`../assets/base.css`、`../data/tools.json`、`image-compressor/`），所以**不要直接双击源码 HTML**；先构建，再用静态服务器打开 `dist/`。相对路径让站点既能部署在域名根目录，也能部署在 GitHub Pages 的 `/tools/` 子路径。
+- 页面使用相对路径（`../assets/base.css`、`../data/tools.json`、`image-compressor/`），所以**不要直接双击源码 HTML**；先构建，再用静态服务器打开 `dist/`。相对路径让站点既能部署在 Cloudflare Pages 的域名根目录，也能部署在 GitHub Pages 的 `/tools/` 子路径。
 - `build.ps1` 会清空 `dist/`、复制资源、校验 JSON、检查工具指向的页面是否存在。
 - 本地预览：
 
@@ -303,7 +356,7 @@ python -m http.server 8137 --directory dist
 ### 7.1 在线工具
 
 1. 在根目录新建 `工具id/`（与 URL 路径同名），放 `index.html`、`style.css`、`script.js`。
-2. 页面引入 `../assets/base.css`，使用共用 header/footer；工具区自己排版，但颜色、字体、按钮、圆角必须使用令牌。
+2. 页面引入 `../assets/base.css`，使用共用 header/footer；header 里复制主题开关和 `<head>` 启动脚本，并引入 `../assets/theme.js`。工具区自己排版，但颜色、字体、按钮、圆角必须使用令牌。
 3. 在 `main/data/tools.json` 增加：
 
 ```json
@@ -346,7 +399,7 @@ python -m http.server 8137 --directory dist
 | `status` | 是 | `active` / `planned`（当前只渲染 active） |
 | `summary` | 是 | 一句话，卡片用 |
 | `url` | 是 | 站内相对路径（如 `image-compressor/`）或外部 `https://` 地址 |
-| `action` | 是 | `打开工具` / `查看详情` / `下载` |
+| `action` | 是 | `打开工具` / `查看详情` / `前往独立站` / `下载` |
 | `icon` | 是 | `image` / `archive` / `extension` / `default` |
 | `platforms` | 否 | 如 `["Windows 10/11"]`，卡片显示第一个 |
 | `version` | 否 | 如 `1.5.7`，卡片显示 `v1.5.7` |
@@ -380,7 +433,11 @@ python -m http.server 8137 --directory dist
 - 图标按钮有 `aria-label`；装饰图标 `aria-hidden="true"`。
 - 图片有 `alt`，并写 `width` / `height`；首屏以下 `loading="lazy"`。
 - 异步结果（筛选数量、压缩汇总、错误）用 `aria-live` / `role="alert"`。
-- 触控目标 ≥ 40px（主按钮 44px）；`touch-action: manipulation`。
+- 触控目标：正文操作 ≥ 40px（主按钮 44px）；Header 紧凑按钮 36px；`touch-action: manipulation`。
+- 主题开关三态在三个页面都存在；开关有 `aria-expanded`、`aria-controls` 和状态化 `aria-label`；菜单用原生 radio group。
+- 深色/浅色/跟随系统都可键盘操作：Enter/Space 打开，方向键切换，Esc 关闭，点击外部关闭。
+- 首屏主题由 `<head>` 内联脚本在 CSS 前设置；不允许先闪白再变色。`meta theme-color` 随主题更新。
+- 深色对比度：正文 ≥ 4.5:1，控件边界 ≥ 3:1；亮色截图保持原样，只加边框。
 - 支持 `prefers-reduced-motion`。
 - 断点：960 / 760 / 640；在 1440、768、390 三个宽度检查不横向溢出、不裁切、不重叠。
 - Sticky header 不遮挡锚点：`scroll-margin-top`。
@@ -398,7 +455,8 @@ python -m http.server 8137 --directory dist
 - 全大写 DM Mono 标签、装饰性 `01 / 02 / 03`、每个链接后面的 `↗`。
 - 把工具卡片写死在 HTML 里；数据只存在一个地方（`tools.json`）。
 - 用假工具/假版本填充空分类。
-- 在未完成全站适配前开启深色模式。
+- 只给单页加深色、其他页面不跟随；或把 `#fff` / `#000` 写死在组件里。
+- 用 JS 直接改内联颜色，而不是通过 `data-theme` + token 切换。
 - 用大面积渐变、玻璃拟态、超过 20px 的圆角来“显得现代”。
 
 ---
@@ -409,6 +467,9 @@ python -m http.server 8137 --directory dist
 - [ ] 1440 / 768 / 390 三个宽度截图检查，无横向滚动。
 - [ ] 键盘 Tab 能走完搜索、分类、卡片、下载按钮；焦点可见。
 - [ ] 文字对比度达标；主按钮和正文没有低对比。
+- [ ] 深色/浅色/跟随系统三态都切一遍；刷新后保留；跟随系统时改系统颜色能实时更新。
+- [ ] 首次访问（无 localStorage）是深色；旧版 `panini-theme` 不影响新主题。
+- [ ] 刷新时没有明显闪白；`meta theme-color` 跟随主题。
 - [ ] `prefers-reduced-motion` 下无动画。
 - [ ] 空分类、搜索无结果、加载失败都有可读的下一步。
 - [ ] 外链有 `rel="noopener noreferrer"`，并说明去向。

@@ -25,6 +25,13 @@
   --success-soft: #e8f3ed;
   --warning: #8a5d18;
   --warning-soft: #fbf1df;
+  --on-ink: #ffffff;
+  --ink-hover: #000000;
+  --header-bg: rgba(246, 245, 241, 0.94);
+  --surface-hover: #fbfaf7;
+  --focus-soft: rgba(28, 28, 26, 0.08);
+  --empty-bg: rgba(255, 255, 255, 0.45);
+  --menu-shadow: 0 12px 32px rgba(28, 28, 26, 0.12);
 
   /* Type */
   --font: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC",
@@ -41,6 +48,35 @@
   --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
 }
 
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #151513;
+  --surface: #1d1d1a;
+  --surface-muted: #252521;
+  --ink: #f2efe7;
+  --ink-soft: #d8d4c9;
+  --muted: #a6a297;
+  --line: #34342e;
+  --line-strong: #4a4a42;
+  --line-control: #7a766c;
+  --accent: #e06a4e;
+  --accent-hover: #f07a5c;
+  --accent-soft: #33221c;
+  --accent-ink: #f2b09d;
+  --success: #86cba7;
+  --success-soft: #1c2f26;
+  --warning: #e0b06a;
+  --warning-soft: #33281a;
+  --on-ink: #151513;
+  --ink-hover: #ffffff;
+  --header-bg: rgba(21, 21, 19, 0.94);
+  --surface-hover: #252521;
+  --focus-soft: rgba(242, 239, 231, 0.14);
+  --empty-bg: rgba(255, 255, 255, 0.02);
+  --menu-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+}
+
 *,
 *::before,
 *::after {
@@ -50,6 +86,7 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  background: var(--bg);
 }
 
 body {
@@ -162,7 +199,7 @@ ol {
   padding: 10px 14px;
   border-radius: var(--radius-sm);
   background: var(--ink);
-  color: #fff;
+  color: var(--on-ink);
   font-size: 13px;
   font-weight: 600;
   transition: top 0.16s var(--ease);
@@ -178,7 +215,7 @@ ol {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(246, 245, 241, 0.94);
+  background: var(--header-bg);
   border-bottom: 1px solid var(--line);
   backdrop-filter: blur(12px);
 }
@@ -243,6 +280,128 @@ ol {
   color: var(--ink);
 }
 
+/* ---------- Theme switch ---------- */
+
+.theme-control {
+  position: relative;
+  flex: none;
+}
+
+.theme-toggle {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--line-control);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--ink);
+  transition: border-color 0.16s var(--ease),
+    background-color 0.16s var(--ease);
+}
+
+.theme-toggle:hover {
+  border-color: var(--ink-soft);
+  background: var(--surface-hover);
+}
+
+.theme-toggle svg {
+  width: 17px;
+  height: 17px;
+}
+
+.theme-toggle .icon {
+  display: none;
+}
+
+[data-theme="dark"] .theme-toggle .icon-moon {
+  display: block;
+}
+
+[data-theme="light"] .theme-toggle .icon-sun {
+  display: block;
+}
+
+[data-theme-mode="system"] .theme-toggle .icon-moon,
+[data-theme-mode="system"] .theme-toggle .icon-sun {
+  display: none;
+}
+
+[data-theme-mode="system"] .theme-toggle .icon-auto {
+  display: block;
+}
+
+.theme-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 70;
+  width: 184px;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: var(--menu-shadow);
+}
+
+.theme-menu[hidden] {
+  display: none;
+}
+
+.theme-option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 9px;
+  border-radius: 6px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.theme-option:hover {
+  background: var(--surface-muted);
+  color: var(--ink);
+}
+
+.theme-option + .theme-option {
+  margin-top: 2px;
+}
+
+.theme-option:focus-within {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.theme-option-label {
+  flex: 1;
+}
+
+.theme-option-check {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  border: 1px solid var(--line-control);
+  border-radius: 50%;
+  transition: border-color 0.16s var(--ease),
+    background-color 0.16s var(--ease);
+}
+
+.theme-option input:checked ~ .theme-option-label {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.theme-option input:checked ~ .theme-option-check {
+  border-color: var(--accent);
+  background: var(--accent);
+  box-shadow: inset 0 0 0 3px var(--surface);
+}
+
 /* ---------- Buttons ---------- */
 
 .btn {
@@ -277,11 +436,11 @@ ol {
 
 .btn-primary {
   background: var(--ink);
-  color: #fff;
+  color: var(--on-ink);
 }
 
 .btn-primary:hover {
-  background: #000;
+  background: var(--ink-hover);
 }
 
 .btn-secondary {
@@ -292,7 +451,7 @@ ol {
 
 .btn-secondary:hover {
   border-color: var(--line-strong);
-  background: #fbfaf7;
+  background: var(--surface-hover);
 }
 
 .btn-ghost {

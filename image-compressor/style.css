@@ -143,7 +143,7 @@
   padding: 0 16px;
   border-radius: var(--radius-sm);
   background: var(--ink);
-  color: #fff;
+  color: var(--on-ink);
   font-size: 13px;
   font-weight: 600;
   line-height: 1;
@@ -151,7 +151,7 @@
 }
 
 .drop-zone:hover .drop-cta {
-  background: #000;
+  background: var(--ink-hover);
 }
 
 /* ---------- Panel ---------- */
@@ -261,7 +261,7 @@ input[type="range"]::-moz-range-thumb {
 
 .setting select:focus {
   border-color: var(--ink);
-  box-shadow: 0 0 0 3px rgba(28, 28, 26, 0.08);
+  box-shadow: 0 0 0 3px var(--focus-soft);
 }
 
 .setting select:focus-visible {

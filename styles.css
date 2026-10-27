@@ -74,7 +74,7 @@
 
 .search input:focus {
   border-color: var(--ink);
-  box-shadow: 0 0 0 3px rgba(28, 28, 26, 0.08);
+  box-shadow: 0 0 0 3px var(--focus-soft);
 }
 
 .search input:focus-visible {
@@ -163,7 +163,7 @@
 .filter[aria-pressed="true"] {
   border-color: var(--ink);
   background: var(--ink);
-  color: #fff;
+  color: var(--on-ink);
 }
 
 .filter-count {
@@ -268,7 +268,7 @@
   padding: 56px 24px;
   border: 1px dashed var(--line-strong);
   border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.45);
+  background: var(--empty-bg);
   text-align: center;
 }
 
