@@ -122,6 +122,7 @@
             <li>右键菜单，或按 <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd> 直接输入。</li>
             <li>逐字键入 / 整段输入两种方式，输入间隔 0–120ms，长文本自动分批。</li>
             <li>兼容 textarea、input、contenteditable、开放 Shadow DOM 和 iframe。</li>
+            <li>界面跟随浏览器语言，提供简体中文与 English。</li>
             <li>本地处理，不联网、不上报、不保存剪贴板内容。</li>
           </ul>
           <p class="notice"><strong>安装方式：</strong>扩展已上架 Edge 加载项商店，在商店页点“获取”就能装好。原来的下载 ZIP、解压到本地、打开开发人员模式再“加载已解压的扩展”这一整套都不需要了。<a href="#install">查看安装步骤</a></p>
@@ -167,7 +168,7 @@
               <ol class="steps">
                 <li>
                   <strong>下载并解压</strong>
-                  <p><a data-download-file href="files/clipboard-type-helper-v1.0.0.zip" download="剪贴板键入助手-v1.0.0.zip">下载备用 ZIP（v1.0.0）</a>，解压到一个固定文件夹。解压后的目录里应直接看到 <code>manifest.json</code>。</p>
+                  <p><a data-download-file href="files/clipboard-type-helper-v1.1.1.zip" download="剪贴板键入助手-v1.1.1.zip">下载备用 ZIP（v1.1.1）</a>，解压到一个固定文件夹。解压后的目录里应直接看到 <code>manifest.json</code>。</p>
                 </li>
                 <li>
                   <strong>打开扩展管理页</strong>
@@ -207,17 +208,29 @@
         <section id="versions" aria-labelledby="versions-title">
           <div class="section-line">
             <h2 id="versions-title">版本记录</h2>
-            <span class="meta" id="versionSummary">当前共 1 个版本</span>
+            <span class="meta" id="versionSummary">当前共 2 个版本</span>
           </div>
           <div class="version-list" id="versionList">
             <article class="version-item">
               <div class="version-head">
-                <strong>v1.0.0</strong>
-                <span>2026-10-27</span>
+                <strong>v1.1.1</strong>
+                <span>2026-10-28</span>
                 <span class="badge badge-success">当前版本</span>
               </div>
               <ul>
-                <li>已上架 Edge 加载项商店，可直接在线安装，无需下载 ZIP 或打开开发人员模式。</li>
+                <li>界面支持简体中文 / English，跟随浏览器 UI 语言；扩展名称、右键菜单、设置面板和输入提示条都会本地化。</li>
+                <li>修正 short_name，商店与工具栏里的名称更短。</li>
+                <li>补齐中英文商店素材：1280×800 截图，以及 440×280 / 1400×560 宣传图。</li>
+                <li>扩展包版本号更新为 v1.1.1，仍不联网、不保存剪贴板内容。</li>
+              </ul>
+            </article>
+            <article class="version-item">
+              <div class="version-head">
+                <strong>v1.0.0</strong>
+                <span>2026-10-27</span>
+              </div>
+              <ul>
+                <li>首个版本，并上架 Edge 加载项商店，可直接在线安装。</li>
                 <li>右键“从剪贴板输入（模拟键盘）”与 Alt+Shift+V 快捷键。</li>
                 <li>逐字 / 整段输入，可调间隔，长文本自动分批。</li>
                 <li>兼容 textarea、input、contenteditable、开放 Shadow DOM 和 iframe。</li>
@@ -232,14 +245,14 @@
         <div class="download-panel-top">
           <span class="badge badge-success badge-dot">已上架商店</span>
           <h2 id="download-title">获取</h2>
-          <p class="download-version">最新版本 <strong data-tool="version">v1.0.0</strong> · <span data-tool="updated">2026-10-27</span></p>
+          <p class="download-version">最新版本 <strong data-tool="version">v1.1.1</strong> · <span data-tool="updated">2026-10-28</span></p>
         </div>
         <dl class="download-meta">
           <div><dt>平台</dt><dd data-tool="platforms">Edge / Chrome 116+</dd></div>
           <div><dt>来源</dt><dd>Edge 加载项商店</dd></div>
-          <div><dt>备用包</dt><dd data-tool="size">49 KB</dd></div>
+          <div><dt>备用包</dt><dd data-tool="size">52 KB</dd></div>
         </dl>
-        <a class="btn btn-primary btn-block" data-store-link href="https://microsoftedge.microsoft.com/addons/detail/%E5%89%AA%E8%B4%B4%E6%9D%BF%E9%94%AE%E5%85%A5%E5%8A%A9%E6%89%8B/nfpjealcmlhljfdljhmklfabbkdokhem" target="_blank" rel="noopener noreferrer" aria-label="在 Edge 加载项商店安装剪贴板键入助手（在新窗口打开）">
+        <a class="btn btn-primary btn-block" data-store-link href="https://microsoftedge.microsoft.com/addons/detail/nfpjealcmlhljfdljhmklfabbkdokhem" target="_blank" rel="noopener noreferrer" aria-label="在 Edge 加载项商店安装剪贴板键入助手（在新窗口打开）">
           在 Edge 加载项商店安装
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M14 4h6v6"></path>
@@ -249,10 +262,10 @@
         </a>
         <a class="btn btn-secondary btn-block" href="#install">查看安装步骤</a>
         <p class="download-note">主渠道是 Edge 加载项商店：点“获取”就能装好，不需要 ZIP，也不需要打开开发人员模式。下载和更新都在商店完成。</p>
-        <p class="download-fallback">不能装商店版？<a data-download-file href="files/clipboard-type-helper-v1.0.0.zip" download="剪贴板键入助手-v1.0.0.zip">下载备用 ZIP</a>，手动解压加载</p>
+        <p class="download-fallback">不能装商店版？<a data-download-file href="files/clipboard-type-helper-v1.1.1.zip" download="剪贴板键入助手-v1.1.1.zip">下载备用 ZIP</a>，手动解压加载</p>
         <details class="hash-details">
           <summary>备用 ZIP 的 SHA-256 校验值</summary>
-          <code data-tool="sha256">E4F9F2CFF64DD41BC84A8D67E72AA0A1466588629D659B7C0B643BFBC779C6A6</code>
+          <code data-tool="sha256">D71D5C9F51486375D43875DB6A8A049FEBB35F42FC34ECFB54459547D7CED9EA</code>
         </details>
       </aside>
     </div>
