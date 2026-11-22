@@ -1223,6 +1223,49 @@ dialog::backdrop {
   line-height: 1.7;
 }
 
+/* ---------- 桌面版下载 ---------- */
+
+.download-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+  padding: 20px 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.download-copy {
+  flex: 1;
+  min-width: 240px;
+}
+
+.download-copy h2 {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.download-copy p {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.75;
+  max-width: 640px;
+}
+
+.download-copy .fineprint {
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.download-button {
+  flex: none;
+}
+
 /* ---------- 使用说明 ---------- */
 
 .notes {
@@ -1320,6 +1363,14 @@ dialog::backdrop {
 }
 
 @media (max-width: 640px) {
+  .download-panel {
+    padding: 16px;
+  }
+
+  .download-button {
+    width: 100%;
+  }
+
   .filter-main {
     grid-template-columns: 1fr;
   }
