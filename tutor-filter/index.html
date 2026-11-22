@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark" data-theme-mode="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#151513">
+  <script>
+    (function () {
+      try {
+        var key = "panini-tools-theme";
+        var mode = localStorage.getItem(key);
+        if (mode !== "light" && mode !== "dark" && mode !== "system") mode = "dark";
+        var dark = mode === "system"
+          ? (window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)").matches : true)
+          : mode === "dark";
+        document.documentElement.dataset.theme = dark ? "dark" : "light";
+        document.documentElement.dataset.themeMode = mode;
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute("content", dark ? "#151513" : "#f6f5f1");
+      } catch (error) {
+        document.documentElement.dataset.theme = "dark";
+        document.documentElement.dataset.themeMode = "dark";
+      }
+    })();
+  </script>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; connect-src 'self' https://restapi.amap.com; img-src 'self' data:; style-src 'self' 'unsafe-inline'; worker-src 'self' blob:; font-src 'self' data:; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <meta name="description" content="把 QQ 群里的家教信息粘贴进来，在浏览器里自动拆单、识别年级科目时薪，再按条件筛选。文字不会上传到服务器。">
+  <title>家教信息整理 · 帕尼尼工具箱</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="stylesheet" href="../assets/base.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body id="top">
+  <a class="skip-link" href="#workspace">跳到家教筛选</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="../" aria-label="帕尼尼工具箱首页">
+        <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false">
+          <rect x="3.5" y="10" width="25" height="17.5" rx="3.5" stroke="currentColor" stroke-width="2"/>
+          <path d="M11 10V7.5a5 5 0 0 1 10 0V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <rect class="latch" x="12.5" y="16" width="7" height="3" rx="1.5"/>
+        </svg>
+        <span>帕尼尼工具箱</span>
+      </a>
+
+      <div class="header-right">
+        <a class="btn btn-secondary btn-sm" href="../">返回工具箱</a>
+        <div class="theme-control">
+          <span class="sr-only" data-theme-status role="status" aria-live="polite"></span>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="打开主题选择" aria-expanded="false" aria-controls="theme-menu" title="主题">
+            <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+            </svg>
+            <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"></path>
+            </svg>
+            <svg class="icon icon-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <circle cx="12" cy="12" r="8"></circle>
+              <path d="M12 4a8 8 0 0 1 0 16Z" fill="currentColor" stroke="none"></path>
+            </svg>
+          </button>
+          <div class="theme-menu" id="theme-menu" data-theme-menu role="group" aria-label="选择主题" hidden>
+            <label class="theme-option">
+              <input class="sr-only" type="radio" name="theme-mode" value="light">
+              <span class="theme-option-label">浅色</span>
+              <span class="theme-option-check" aria-hidden="true"></span>
+            </label>
+            <label class="theme-option">
+              <input class="sr-only" type="radio" name="theme-mode" value="dark">
+              <span class="theme-option-label">深色</span>
+              <span class="theme-option-check" aria-hidden="true"></span>
+            </label>
+            <label class="theme-option">
+              <input class="sr-only" type="radio" name="theme-mode" value="system">
+              <span class="theme-option-label">跟随系统</span>
+              <span class="theme-option-check" aria-hidden="true"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container tool-page">
+    <section class="tool-intro" aria-labelledby="tool-title">
+      <div class="tool-intro-copy">
+        <div class="tool-badges">
+          <span class="badge badge-accent">在线工具</span>
+          <span class="badge badge-dot">文字不上传</span>
+          <button type="button" id="aiBadge" class="badge badge-button" title="点这里配置高德 Key">检测高德 Key…</button>
+        </div>
+        <h1 id="tool-title">把群里的家教信息，理成一张清单。</h1>
+        <p>粘贴 QQ 群消息，浏览器里自动拆成一条条家教单，识别年级、科目、时薪和排课，再按条件筛选。文字不离开这台设备。</p>
+      </div>
+      <dl class="tool-facts">
+        <div>
+          <dt>处理方式</dt>
+          <dd>浏览器本地</dd>
+        </div>
+        <div>
+          <dt>解析规则</dt>
+          <dd>本地正则</dd>
+        </div>
+        <div>
+          <dt>费用</dt>
+          <dd>免费</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="workspace" id="workspace" aria-label="家教筛选工作区">
+      <div class="panel import-panel">
+        <div class="panel-head">
+          <h2>粘贴群消息</h2>
+          <button type="button" class="link-button" id="sampleBtn">填入示例</button>
+        </div>
+        <label class="sr-only" for="rawText">家教消息原文</label>
+        <textarea id="rawText" placeholder="从 QQ 群复制多条家教信息，粘贴到这里…"></textarea>
+        <div class="import-actions">
+          <span class="fineprint">不联网、不调用模型；首次识别会加载本地解析引擎（约 5 MB，仅一次）。</span>
+          <button type="button" class="btn btn-primary" id="importBtn">识别并收录</button>
+        </div>
+        <p class="status-line" id="engineStatus" role="status" aria-live="polite"></p>
+        <p class="status-line" id="notice" role="status" aria-live="polite"></p>
+      </div>
+
+      <section class="results" aria-labelledby="results-title">
+        <div class="results-head">
+          <div>
+            <h2 id="results-title">家教机会</h2>
+            <p class="fineprint"><span id="count">0</span> 条结果</p>
+          </div>
+          <div class="results-tools">
+            <label class="inline-field">每行
+              <select id="perRow">
+                <option value="2">2 条</option>
+                <option value="3">3 条</option>
+                <option value="4">4 条</option>
+              </select>
+            </label>
+            <label class="inline-field"><input type="checkbox" id="sideToggle"> 侧栏详情</label>
+            <label class="inline-field">位置
+              <select id="sidePos" disabled>
+                <option value="right">右侧</option>
+                <option value="left">左侧</option>
+              </select>
+            </label>
+            <a class="btn btn-secondary btn-sm" id="exportCsv" href="#" title="导出当前全部记录为 CSV">导出 CSV</a>
+          </div>
+        </div>
+
+        <div id="filterSentinel" aria-hidden="true"></div>
+        <div class="panel filter-bar" id="filterBar">
+          <div class="filter-main">
+            <label class="search-field">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+              <input id="q" placeholder="搜索单号、地址、科目、原文…" autocomplete="off" aria-label="搜索家教信息">
+            </label>
+
+            <div class="cascade" id="gradeCascade">
+              <input type="hidden" id="stage"><input type="hidden" id="grade">
+              <button type="button" class="cascade-trigger" id="gradeTrigger" aria-haspopup="true" aria-expanded="false">全部年级 <span aria-hidden="true">›</span></button>
+              <div class="cascade-menu" id="gradeMenu" role="group" aria-label="选择年级">
+                <div class="cascade-stages" id="gradeStages"></div>
+                <div class="cascade-grades" id="gradeOptions"></div>
+              </div>
+            </div>
+
+            <label class="select-field">
+              <span class="sr-only">科目</span>
+              <select id="subject">
+                <option value="">全部科目 / 类型</option>
+                <optgroup label="文化课"><option>语文</option><option>数学</option><option>英语</option><option>物理</option><option>化学</option><option>生物</option><option>政治</option><option>历史</option><option>地理</option><option>道法</option><option>科学</option><option>奥数</option><option>全科</option></optgroup>
+                <optgroup label="艺术类"><option>音乐</option><option>声乐</option><option>钢琴</option><option>古筝</option><option>吉他</option><option>舞蹈</option><option>美术</option><option>绘画</option><option>书法</option></optgroup>
+                <optgroup label="编程与体育"><option>编程</option><option>Scratch</option><option>Python</option><option>C++</option><option>体育</option><option>篮球</option><option>足球</option><option>游泳</option></optgroup>
+                <optgroup label="特殊类型（不一定教课）"><option>陪学</option><option>陪读</option><option>作业辅导</option><option>作业监督</option><option>陪伴</option><option>接送</option></optgroup>
+                <optgroup label="其他"><option value="其他">其他 / 未归类</option></optgroup>
+              </select>
+            </label>
+
+            <button type="button" class="more-toggle" id="moreBtn" aria-expanded="false" aria-controls="morePanel">更多筛选<b id="moreCount" hidden>0</b><span class="caret" aria-hidden="true">▾</span></button>
+          </div>
+
+          <div class="filter-foot">
+            <div class="active-filters" id="activeFilters"></div>
+            <button type="button" class="select-toggle" id="selectToggle" aria-pressed="false">
+              <span id="selectToggleLabel">选择</span><span class="select-count" id="selectToggleCount" hidden>0</span>
+            </button>
+          </div>
+
+          <div class="more-panel" id="morePanel" hidden>
+            <div class="filter-group">
+              <h3>时间与价格</h3>
+              <div class="row">
+                <label class="mini">排序
+                  <select id="sort">
+                    <option value="fresh">按发布新鲜度</option>
+                    <option value="hourly">按时薪从高到低</option>
+                  </select>
+                </label>
+              </div>
+              <div class="row">
+                <label class="mini">最低时薪
+                  <input id="priceMin" type="number" min="0" step="10" placeholder="如 100">
+                </label>
+              </div>
+              <label class="switch-row"><input type="checkbox" id="onlyFresh" checked> 隐藏疑似过期（发布超过 72 小时）</label>
+            </div>
+
+            <div class="filter-group">
+              <h3>授课与状态</h3>
+              <div class="row">
+                <label class="mini">授课方式
+                  <select id="mode"><option value="">全部</option><option>线上</option><option>线下</option></select>
+                </label>
+              </div>
+              <div class="row">
+                <label class="mini">处理状态
+                  <select id="status"><option value="">全部</option><option>新单</option><option>收藏</option><option>已联系</option><option>已过期</option><option>忽略</option></select>
+                </label>
+              </div>
+            </div>
+
+            <div class="filter-group">
+              <h3>地点与距离</h3>
+              <div class="row">
+                <input id="originQuery" placeholder="出发地点，如 南师大随园校区" aria-label="出发地点">
+                <button type="button" class="btn btn-secondary btn-sm" id="searchOrigin">搜索</button>
+              </div>
+              <div class="row">
+                <label class="sr-only" for="originCandidates">选择准确地点</label>
+                <select id="originCandidates"><option value="">请选择准确地点</option></select>
+              </div>
+              <div class="row">
+                <label class="mini">距离
+                  <select id="radius"><option value="">不限</option><option value="3">3 公里内</option><option value="5">5 公里内</option><option value="10">10 公里内</option><option value="20">20 公里内</option><option value="30">30 公里内</option></select>
+                </label>
+                <button type="button" class="btn btn-secondary btn-sm" id="geocodeJobs">识别家教地点</button>
+              </div>
+              <p class="fineprint" id="originLabel">尚未选择出发地点</p>
+              <button type="button" class="link-button" id="openAmapSetup">配置高德 Key</button>
+            </div>
+
+            <div class="filter-group">
+              <h3>本机数据</h3>
+              <label class="switch-row"><input type="checkbox" id="saveToggle" checked> 保存到这台设备（关掉网页也在）</label>
+              <p class="fineprint" id="localStatus"></p>
+              <div class="row">
+                <button type="button" class="btn btn-secondary btn-sm" id="exportBackup">导出备份</button>
+                <button type="button" class="btn btn-secondary btn-sm" id="importBackup">导入备份</button>
+                <button type="button" class="btn btn-ghost btn-sm" id="clearAll">清空本机数据</button>
+              </div>
+              <input type="file" id="backupInput" accept=".json,application/json" hidden>
+              <p class="fineprint">备份是一个 JSON 文件，换电脑或换手机时导入即可。记录只存在你自己的浏览器里。</p>
+            </div>
+
+            <div class="filter-group">
+              <h3>数据维护</h3>
+              <div class="row">
+                <button type="button" class="btn btn-secondary btn-sm" id="reparseJobs">重解析全部</button>
+              </div>
+              <p class="fineprint">用当前规则重新识别历史记录，状态和地图坐标会保留。</p>
+            </div>
+          </div>
+
+          <p class="status-line" id="mapNotice" role="status" aria-live="polite"></p>
+        </div>
+
+        <div class="selection-bar">
+          <label class="pick-all"><input type="checkbox" id="selectAll"> 全选当前结果</label>
+          <div class="batch-actions" id="batchActions" hidden>
+            <span>已选 <strong id="selectedCount">0</strong> 条</span>
+            <button type="button" class="link-button" id="clearSelection">取消选择</button>
+            <button type="button" class="btn btn-secondary btn-sm danger" id="batchDelete" disabled>批量删除</button>
+          </div>
+        </div>
+
+        <div class="results-body" id="resultsBody">
+          <div class="cards-col">
+            <div id="cards" class="cards"></div>
+            <div id="empty" class="empty">
+              <h3>还没有家教信息</h3>
+              <p>把群里的家教消息粘贴到上面，点「识别并收录」。</p>
+            </div>
+          </div>
+          <aside id="sideDetail" class="side-detail" hidden></aside>
+        </div>
+      </section>
+    </section>
+
+    <section class="notes" aria-label="使用说明">
+      <article>
+        <h2>只在本机处理</h2>
+        <p>解析、筛选、保存都在当前浏览器里完成，文字不会发给任何服务器；默认保存到本机，也可以一键关掉保存或清空。</p>
+      </article>
+      <article>
+        <h2>时薪统一折算</h2>
+        <p>「200-240/2h」「110-120小时」这类写法会折算成元/小时再比较，估算出来的会标「估算」，不硬算月薪。</p>
+      </article>
+      <article>
+        <h2>规则可回归</h2>
+        <p>识别用的是本地正则和词表，没有模型调用。规则和桌面版共用同一份，改了会跑回归测试再发布。</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div>
+        <a class="footer-brand" href="../" aria-label="帕尼尼工具箱首页">
+          <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false">
+            <rect x="3.5" y="10" width="25" height="17.5" rx="3.5" stroke="currentColor" stroke-width="2"/>
+            <path d="M11 10V7.5a5 5 0 0 1 10 0V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <rect class="latch" x="12.5" y="16" width="7" height="3" rx="1.5"/>
+          </svg>
+          <span>帕尼尼工具箱</span>
+        </a>
+        <p class="footer-note">浏览器本地处理 · 文字不上传 · 免费使用</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://panini-pigs.cn/">主站</a>
+        <a href="mailto:2778934515@qq.com">问题反馈</a>
+        <a href="#top">回到顶部</a>
+      </div>
+      <p class="footer-copy">© 2026 帕尼尼猪猪</p>
+    </div>
+  </footer>
+
+  <dialog id="amapSetup">
+    <div class="dialog-shell">
+      <div class="dialog-head">
+        <div>
+          <span class="eyebrow">地图能力</span>
+          <h2>连接高德地图</h2>
+        </div>
+        <button class="close" id="amapClose" type="button" aria-label="关闭">×</button>
+      </div>
+      <div class="dialog-body amap-body">
+        <p class="amap-intro">地点搜索、家教地址识别、距离排序要用高德「Web 服务」类型的 Key。<strong>每个人用自己的 Key，额度互不影响</strong>；不配置也能筛选，只是没有距离。</p>
+        <ol class="amap-steps">
+          <li>打开 <a href="https://console.amap.com/dev/key/app" target="_blank" rel="noopener noreferrer">高德开放平台控制台</a>，注册并完成个人开发者认证（免费）。</li>
+          <li>「应用管理 → 我的应用 → 创建新应用」，名称随便填。</li>
+          <li>进入该应用点「添加 Key」，<strong>服务平台必须选「Web 服务」</strong>（不是「Web 端(JS API)」），提交后复制那串 Key。</li>
+        </ol>
+        <div class="amap-links">
+          <a href="https://lbs.amap.com/api/mcp-server/create-project-and-key" target="_blank" rel="noopener noreferrer">官方图文步骤</a>
+          <a href="https://search.bilibili.com/all?keyword=高德开放平台%20申请Key%20Web服务" target="_blank" rel="noopener noreferrer">B 站视频教程</a>
+        </div>
+        <label class="amap-field">
+          <span>把 Key 粘贴到这里</span>
+          <input id="amapKeyInput" type="text" autocomplete="off" spellcheck="false" placeholder="32 位字母数字">
+        </label>
+        <p class="amap-status" id="amapStatus" role="status" aria-live="polite"></p>
+        <div class="amap-actions">
+          <button type="button" class="btn btn-primary" id="amapSave">保存并测试</button>
+          <button type="button" class="btn btn-secondary" id="amapTest">测试当前 Key</button>
+          <button type="button" class="btn btn-ghost" id="amapClear">清除 Key</button>
+        </div>
+        <p class="amap-note">Key 只保存在你自己的浏览器里，不会上传到任何服务器；换设备或换浏览器要重新填一次。</p>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="detail">
+    <div class="dialog-shell">
+      <div class="dialog-head">
+        <div>
+          <span class="eyebrow">订单详情</span>
+          <h2 id="detailTitle"></h2>
+        </div>
+        <button class="close" id="detailClose" type="button" aria-label="关闭">×</button>
+      </div>
+      <div class="dialog-body" id="detailBody"></div>
+    </div>
+  </dialog>
+
+  <script type="module" src="app.js"></script>
+  <script src="../assets/theme.js?v=2" defer></script>
+</body>
+</html>
